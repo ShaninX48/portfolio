@@ -21,7 +21,15 @@
   function scrambleInto(el, text, opts) {
     const { startDelay = 0, charDelay = 40, revealSpan = 26 } = opts || {};
     const chars = text.split('');
-    el.innerHTML = chars.map(c => `<span class="scramble-char">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
+    const words = text.split(' ');
+    let html = '';
+    words.forEach((word, wi) => {
+      html += '<span class="scramble-word">';
+      html += word.split('').map(c => `<span class="scramble-char">${c}</span>`).join('');
+      html += '</span>';
+      if (wi < words.length - 1) html += '<span class="scramble-char">&nbsp;</span>';
+    });
+    el.innerHTML = html;
     const spans = el.querySelectorAll('.scramble-char');
     spans.forEach((span, i) => {
       const original = chars[i];

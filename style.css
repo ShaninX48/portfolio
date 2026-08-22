@@ -168,6 +168,7 @@
     letter-spacing: -0.01em;
   }
   .hero-name .scramble-char{ display: inline-block; }
+  .hero-name .scramble-word{ display: inline-block; white-space: nowrap; }
   .hero-name .grad{
     background: linear-gradient(100deg, var(--cyan) 10%, var(--violet) 60%, var(--cyan) 95%);
     -webkit-background-clip: text; background-clip: text; color: transparent;
