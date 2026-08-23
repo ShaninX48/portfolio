@@ -52,8 +52,8 @@
   }
   @keyframes drift{
     0%{ transform: translateY(0) translateX(0); opacity:0; }
-    10%{ opacity: 0.7; }
-    90%{ opacity: 0.5; }
+    10%{ opacity: 0.45; }
+    90%{ opacity: 0.3; }
     100%{ transform: translateY(-110vh) translateX(20px); opacity:0; }
   }
 
@@ -71,7 +71,7 @@
   }
   .glow-border:hover::before, .glow-border:focus-visible::before{ opacity: 1; }
   .glow-border:hover, .glow-border:focus-visible{
-    box-shadow: 0 0 28px rgba(0,232,255,0.16), 0 0 60px rgba(124,92,255,0.08);
+    box-shadow: 0 0 18px rgba(0,232,255,0.10), 0 0 40px rgba(124,92,255,0.06);
   }
   @keyframes shift{ 0%{ background-position: 0% 50%; } 100%{ background-position: 220% 50%; } }
 
@@ -202,7 +202,7 @@
     backdrop-filter: blur(10px);
   }
   .chip .dot{ width: 6px; height: 6px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
-  .chip-link{ text-decoration: none; }
+  .chip-link{ text-decoration: none; border-radius: 999px; }
 
   .scroll-hint{
     position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
@@ -328,7 +328,8 @@
     width: 100px; height: 100px; border-radius: 50%;
     background: radial-gradient(circle, rgba(0,232,255,0.2), transparent 70%);
     display: flex; align-items: center; justify-content: center;
-    font-size: 46px; animation: floaty 4s ease-in-out infinite; flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace; font-weight: 600; color: var(--cyan);
+    font-size: 34px; animation: floaty 4s ease-in-out infinite; flex-shrink: 0;
   }
   @media (max-width: 700px){ .scale-wrap{ margin: 0 auto; } }
   @keyframes floaty{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-10px); } }

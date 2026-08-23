@@ -122,9 +122,9 @@
   }, { passive: true });
 
   const blobs = [
-    { baseX: 0.20, baseY: 0.10, r: 0.42, color: 'rgba(0,232,255,0.20)', lag: 0.035, dx: 0, dy: 0 },
-    { baseX: 0.85, baseY: 0.20, r: 0.36, color: 'rgba(124,92,255,0.16)', lag: 0.02, dx: 0, dy: 0 },
-    { baseX: 0.50, baseY: 0.95, r: 0.40, color: 'rgba(0,232,255,0.14)', lag: 0.015, dx: 0, dy: 0 }
+    { baseX: 0.20, baseY: 0.10, r: 0.42, color: 'rgba(0,232,255,0.13)', lag: 0.035, dx: 0, dy: 0 },
+    { baseX: 0.85, baseY: 0.20, r: 0.36, color: 'rgba(124,92,255,0.10)', lag: 0.02, dx: 0, dy: 0 },
+    { baseX: 0.50, baseY: 0.95, r: 0.40, color: 'rgba(0,232,255,0.09)', lag: 0.015, dx: 0, dy: 0 }
   ];
 
   function draw() {
