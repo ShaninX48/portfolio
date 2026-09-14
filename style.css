@@ -362,6 +362,33 @@
   .contact-label{ font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--slate-dim); margin-bottom: 4px; }
   .contact-value{ font-family: 'Space Grotesk', sans-serif; font-size: 14.5px; font-weight: 600; color: var(--ice); word-break: break-word; }
 
+  /* ---------- Scroll progress bar ---------- */
+  .scroll-progress{
+    position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+    box-shadow: 0 0 10px rgba(0,232,255,0.6);
+    z-index: 200; transition: width 0.08s linear;
+  }
+
+  /* ---------- Cursor glow dot ---------- */
+  .cursor-dot{
+    position: fixed; top: 0; left: 0; width: 22px; height: 22px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,232,255,0.45), rgba(124,92,255,0.12) 60%, transparent 75%);
+    pointer-events: none; z-index: 150; transform: translate(-50%, -50%);
+    opacity: 0; transition: opacity 0.3s ease, width 0.25s ease, height 0.25s ease;
+    mix-blend-mode: screen;
+  }
+  .cursor-dot.visible{ opacity: 1; }
+  .cursor-dot.hover{ width: 44px; height: 44px; }
+  @media (max-width: 880px), (pointer: coarse){ .cursor-dot{ display: none; } }
+
+  /* ---------- 3D tilt perspective ---------- */
+  .project-grid, .hobby-grid{ perspective: 1200px; }
+  .project-card, .hobby-card{ will-change: transform; }
+  @media (prefers-reduced-motion: reduce){
+    .cursor-dot, .scroll-progress{ display: none; }
+  }
+
   /* ---------- Footer ---------- */
   footer{
     text-align: center; padding: 60px 24px 46px;

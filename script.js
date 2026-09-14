@@ -152,3 +152,61 @@
     requestAnimationFrame(draw);
   }
   draw();
+
+  // ---------- Reduced motion check ----------
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---------- Scroll progress bar ----------
+  const progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress';
+  document.body.appendChild(progressBar);
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // ---------- Cursor glow dot (fine-pointer devices only) ----------
+  if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
+    const dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    document.body.appendChild(dot);
+    let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+    let tx = cx, ty = cy;
+    window.addEventListener('mousemove', (e) => {
+      tx = e.clientX; ty = e.clientY;
+      dot.classList.add('visible');
+    });
+    document.querySelectorAll('a, button, .project-card, .hobby-card, .contact-card').forEach(el => {
+      el.addEventListener('mouseenter', () => dot.classList.add('hover'));
+      el.addEventListener('mouseleave', () => dot.classList.remove('hover'));
+    });
+    function cursorLoop() {
+      cx += (tx - cx) * 0.2;
+      cy += (ty - cy) * 0.2;
+      dot.style.left = cx + 'px';
+      dot.style.top = cy + 'px';
+      requestAnimationFrame(cursorLoop);
+    }
+    cursorLoop();
+  }
+
+  // ---------- 3D tilt on project & hobby cards ----------
+  if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
+    document.querySelectorAll('.project-card, .hobby-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width;
+        const py = (e.clientY - rect.top) / rect.height;
+        const rotX = (py - 0.5) * -8;
+        const rotY = (px - 0.5) * 8;
+        card.style.transform = `translateY(-6px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
