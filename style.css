@@ -362,6 +362,62 @@
   .contact-label{ font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--slate-dim); margin-bottom: 4px; }
   .contact-value{ font-family: 'Space Grotesk', sans-serif; font-size: 14.5px; font-weight: 600; color: var(--ice); word-break: break-word; }
 
+  /* ---------- Case study ---------- */
+  .case-study{
+    margin-top: 28px; padding: 0; overflow: hidden; border-radius: 14px;
+  }
+  .case-study-head{
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 18px; background: rgba(255,255,255,0.04);
+    font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: rgba(255,255,255,0.7);
+  }
+  .case-study-body{ padding: 24px 26px; display: flex; flex-direction: column; gap: 20px; }
+  .cs-block h4{
+    font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--cyan); margin: 0 0 8px;
+  }
+  .cs-block p{ margin: 0; color: rgba(255,255,255,0.75); line-height: 1.6; }
+  .cs-block code{
+    font-family: 'JetBrains Mono', monospace; font-size: 0.85em;
+    background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: var(--cyan);
+  }
+  .cs-links{ display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+
+  /* ---------- Resume button ---------- */
+  .resume-btn{ margin-top: 16px; display: inline-flex; }
+
+  /* ---------- Highlights strip ---------- */
+  .highlights{
+    display: flex; flex-wrap: wrap; gap: 14px;
+    margin-top: 22px;
+  }
+  .highlight-item{
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px; border-radius: 10px;
+    background: rgba(255,255,255,0.03);
+  }
+  .highlight-icon{ font-size: 1.4rem; line-height: 1; }
+  .highlight-title{ font-size: 0.85rem; font-weight: 600; color: #fff; }
+  .highlight-sub{ font-size: 0.72rem; color: rgba(255,255,255,0.55); }
+
+  /* ---------- CTA banner ---------- */
+  .cta-banner{
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+    padding: 24px 28px; border-radius: 14px;
+    background: rgba(255,255,255,0.03);
+    margin-bottom: 36px;
+  }
+  .cta-text{ font-size: 1.05rem; font-weight: 500; color: #fff; }
+  .cta-btn{
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 20px; border-radius: 8px;
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+    color: #05070d; font-weight: 600; font-size: 0.9rem;
+    text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .cta-btn:hover{ transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,232,255,0.35); }
+
   /* ---------- Scroll progress bar ---------- */
   .scroll-progress{
     position: fixed; top: 0; left: 0; height: 3px; width: 0%;

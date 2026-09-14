@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MD Tanveer Mahmood Shanin — Full-Stack Developer</title>
+<meta name="description" content="MD Tanveer Mahmood Shanin — Full-Stack Developer building AI & blockchain products (React, Node.js, TypeScript, Solidity). Based in Dhaka, BD, open to remote.">
+<link rel="canonical" href="https://tanveer-shanin.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MD Tanveer Mahmood Shanin — Full-Stack Developer">
+<meta property="og:description" content="Building AI & blockchain products end-to-end — React, Node.js, TypeScript, Solidity.">
+<meta property="og:url" content="https://tanveer-shanin.vercel.app/">
+<meta property="og:image" content="https://tanveer-shanin.vercel.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MD Tanveer Mahmood Shanin — Full-Stack Developer">
+<meta name="twitter:description" content="Building AI & blockchain products end-to-end — React, Node.js, TypeScript, Solidity.">
+<meta name="twitter:image" content="https://tanveer-shanin.vercel.app/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -35,6 +46,17 @@
 <span class="chip"><span class="dot"></span>Dhaka, BD — Open to Remote</span>
 <a class="chip chip-link glow-border" href="https://github.com/ShaninX48" target="_blank" rel="noopener noreferrer"><span class="dot"></span>github.com/ShaninX48</a>
 </div>
+<div class="highlights">
+<div class="highlight-item glow-border">
+<span class="highlight-icon">🥉</span>
+<div><div class="highlight-title">Bronze Award — WICE</div><div class="highlight-sub">Find Blood project</div></div>
+</div>
+<div class="highlight-item glow-border">
+<span class="highlight-icon">🏆</span>
+<div><div class="highlight-title">Excellence Award — KAIST WFK</div><div class="highlight-sub">Team-5, Final Project Competition</div></div>
+</div>
+</div>
+<a class="cta-btn resume-btn" href="resume.pdf" download>📄 Download Resume</a>
 <div class="scroll-hint"><span>SCROLL</span><span class="bar"></span></div>
 </section>
 <section id="about">
@@ -165,6 +187,34 @@
 </div>
 </div>
 </div>
+<div class="case-study reveal glow-border">
+<div class="case-study-head">
+<span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span>
+<span class="code-filename">case-study.md — Product Provenance &amp; Anti-Counterfeit Tracker</span>
+</div>
+<div class="case-study-body">
+<div class="cs-block">
+<h4>Problem</h4>
+<p>Counterfeit goods move through supply chains because there's no tamper-proof way to verify a product's origin and custody chain at each handoff. I wanted a system where every stage change is provable on-chain, not just claimed on a label.</p>
+</div>
+<div class="cs-block">
+<h4>Approach</h4>
+<p>Started this as a broader self-sovereign identity (DID) system, then narrowed the scope to something with a clearer real-world use case: a Solidity contract with three core actions — <code>register</code>, <code>updateStage</code>, and <code>transferOwnership</code>. I fully tested it locally on Remix VM before writing a single line of frontend code, then deployed it to the Polygon Amoy testnet via MetaMask. The frontend is a custom manifest/customs-stamp-themed UI built with ethers.js, split into three flows: register a product, track &amp; verify its history, and update/transfer ownership.</p>
+</div>
+<div class="cs-block">
+<h4>Challenge</h4>
+<p>PolygonScan contract verification kept failing after repeated attempts. Rather than block the whole project chasing one tooling issue, I made the call to ship the working testnet deployment and frontend as-is, and treat verification as a follow-up polish item rather than a launch blocker — a real trade-off between "perfect" and "shipped."</p>
+</div>
+<div class="cs-block">
+<h4>Result</h4>
+<p>A live, end-to-end flow on a public testnet: register a product on-chain, verify its stage history, and transfer ownership — all working, not mocked.</p>
+<div class="cs-links">
+<a class="project-link" href="https://amoy.polygonscan.com/address/0x7d123FBa59760EB03162819b7b63c702793C0a00" target="_blank" rel="noopener noreferrer">View Contract ↗</a>
+<a class="project-link" href="https://shaninx48.github.io/product-provenance-tracker/" target="_blank" rel="noopener noreferrer">Live Frontend ↗</a>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="hobbies">
 <div class="eyebrow reveal">off-duty</div>
@@ -211,6 +261,10 @@
 <section id="contact">
 <div class="eyebrow reveal">get in touch</div>
 <h2 class="reveal">Let's connect</h2>
+<div class="cta-banner reveal glow-border">
+<div class="cta-text">Got an idea worth building? Let's talk.</div>
+<a class="cta-btn" href="mailto:shaninmahmood@gmail.com">Email me →</a>
+</div>
 <div class="contact-grid">
 <a class="contact-card reveal glow-border" href="mailto:shaninmahmood@gmail.com">
 <span class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></span>
