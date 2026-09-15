@@ -153,6 +153,40 @@
   }
   draw();
 
+  // ---------- Case study modal ----------
+  const csOverlay = document.getElementById('csModalOverlay');
+  const csContent = document.getElementById('csModalContent');
+  const csClose = document.getElementById('csModalClose');
+  let lastFocused = null;
+
+  function openCaseStudy(key) {
+    const tpl = document.getElementById('cs-' + key);
+    if (!tpl || !csOverlay || !csContent) return;
+    csContent.innerHTML = '';
+    csContent.appendChild(tpl.content.cloneNode(true));
+    lastFocused = document.activeElement;
+    csOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    csClose.focus();
+  }
+  function closeCaseStudy() {
+    csOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
+  }
+  document.querySelectorAll('.details-btn').forEach(btn => {
+    btn.addEventListener('click', () => openCaseStudy(btn.dataset.caseStudy));
+  });
+  if (csClose) csClose.addEventListener('click', closeCaseStudy);
+  if (csOverlay) {
+    csOverlay.addEventListener('click', (e) => {
+      if (e.target === csOverlay) closeCaseStudy();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && csOverlay && csOverlay.classList.contains('open')) closeCaseStudy();
+  });
+
   // ---------- Reduced motion check ----------
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
