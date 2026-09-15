@@ -100,6 +100,7 @@
 <div class="project-links">
 <a class="project-link" href="https://github.com/ShaninX48/kabaddi-raid-master" target="_blank" rel="noopener noreferrer">GitHub</a>
 <a class="project-link" href="https://kabaddi-raid-master.vercel.app" target="_blank" rel="noopener noreferrer">Live Demo</a>
+<button class="project-link details-btn" data-case-study="kabaddi" type="button">Details</button>
 </div>
 </div>
 <div class="project-card reveal glow-border" tabindex="0">
@@ -114,6 +115,7 @@
 <div class="project-links">
 <a class="project-link" href="https://github.com/ShaninX48/skip-clearance" target="_blank" rel="noopener noreferrer">GitHub</a>
 <a class="project-link" href="https://skip-clearance.vercel.app/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+<button class="project-link details-btn" data-case-study="skip-clearance" type="button">Details</button>
 </div>
 </div>
 <div class="project-card reveal glow-border" tabindex="0">
@@ -129,6 +131,7 @@
 <div class="project-links">
 <a class="project-link" href="https://github.com/ShaninX48/product-provenance-tracker" target="_blank" rel="noopener noreferrer">GitHub</a>
 <a class="project-link" href="https://shaninx48.github.io/product-provenance-tracker/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+<button class="project-link details-btn" data-case-study="provenance-tracker" type="button">Details</button>
 </div>
 </div>
 <div class="project-card reveal glow-border" tabindex="0">
@@ -143,6 +146,7 @@
 <div class="project-links">
 <a class="project-link" href="https://github.com/ShaninX48/yutnori-online" target="_blank" rel="noopener noreferrer">GitHub</a>
 <a class="project-link" href="https://yutnori-online.onrender.com" target="_blank" rel="noopener noreferrer">Live Demo</a>
+<button class="project-link details-btn" data-case-study="yutnori" type="button">Details</button>
 </div>
 </div>
 <div class="project-card reveal glow-border" tabindex="0">
@@ -157,6 +161,7 @@
 <div class="project-links">
 <a class="project-link" href="https://github.com/ShaninX48/sarangsho" target="_blank" rel="noopener noreferrer">GitHub</a>
 <a class="project-link" href="https://sarangsho.vercel.app/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+<button class="project-link details-btn" data-case-study="sarangsho" type="button">Details</button>
 </div>
 </div>
 <div class="project-card reveal glow-border" tabindex="0">
@@ -171,6 +176,7 @@
 <div class="project-links">
 <a class="project-link" href="https://github.com/ShaninX48/keyforge" target="_blank" rel="noopener noreferrer">GitHub</a>
 <a class="project-link" href="https://keyforge-zeta.vercel.app/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+<button class="project-link details-btn" data-case-study="keyforge" type="button">Details</button>
 </div>
 </div>
 <div class="project-card reveal glow-border" tabindex="0">
@@ -184,15 +190,32 @@
 <div class="project-links">
 <a class="project-link" href="https://github.com/ShaninX48/connector-chat" target="_blank" rel="noopener noreferrer">GitHub</a>
 <a class="project-link" href="https://connector-chat-psi.vercel.app/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+<button class="project-link details-btn" data-case-study="connectors" type="button">Details</button>
 </div>
 </div>
 </div>
-<div class="case-study reveal glow-border">
+<template id="cs-provenance-tracker">
 <div class="case-study-head">
 <span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span>
 <span class="code-filename">case-study.md — Product Provenance &amp; Anti-Counterfeit Tracker</span>
 </div>
+<div class="cs-meta">
+<span class="cs-tag">Solo project</span>
+<span class="cs-tag">Solidity</span>
+<span class="cs-tag">Polygon Amoy</span>
+<span class="cs-tag">ethers.js</span>
+<span class="cs-tag">MetaMask</span>
+</div>
 <div class="case-study-body">
+<div class="cs-block">
+<h4>Key Features</h4>
+<ul class="cs-list">
+<li>On-chain <code>register</code>, <code>updateStage</code>, and <code>transferOwnership</code> actions</li>
+<li>Three UI flows: register a product, track &amp; verify history, update/transfer ownership</li>
+<li>Manifest / customs-stamp themed frontend</li>
+<li>Frontend hosted on GitHub Pages, contract live on a public testnet</li>
+</ul>
+</div>
 <div class="cs-block">
 <h4>Problem</h4>
 <p>Counterfeit goods move through supply chains because there's no tamper-proof way to verify a product's origin and custody chain at each handoff. I wanted a system where every stage change is provable on-chain, not just claimed on a label.</p>
@@ -213,6 +236,253 @@
 <a class="project-link" href="https://shaninx48.github.io/product-provenance-tracker/" target="_blank" rel="noopener noreferrer">Live Frontend ↗</a>
 </div>
 </div>
+</div>
+</template>
+<template id="cs-kabaddi">
+<div class="case-study-head">
+<span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span>
+<span class="code-filename">case-study.md — Kabaddi: Raid Master</span>
+</div>
+<div class="cs-meta">
+<span class="cs-tag">3-person team</span>
+<span class="cs-tag">Three.js</span>
+<span class="cs-tag">Web Audio API</span>
+<span class="cs-tag">getUserMedia</span>
+<span class="cs-tag">Single-file</span>
+</div>
+<div class="case-study-body">
+<div class="cs-block">
+<h4>Key Features</h4>
+<ul class="cs-list">
+<li>Real 3D Kabaddi court built with Three.js</li>
+<li>Mic-based "chant-to-breathe" raid mechanic — hold a sound to hold your raid</li>
+<li>Authentic rules: Do-or-Die raids, Super Tackles, All-Out/Lona, Golden Raid tie-breaker</li>
+<li>Turn-based AI defense opponent</li>
+</ul>
+</div>
+<div class="cs-block">
+<h4>Problem</h4>
+<p>Most sports web games oversimplify their sport for the sake of playability. I wanted a browser Kabaddi game that actually respects the real rules — Do-or-Die raids, Super Tackles, All-Out/Lona, a Golden Raid tie-breaker — not a watered-down arcade version.</p>
+</div>
+<div class="cs-block">
+<h4>Approach</h4>
+<p>Built with a 3-person team (Sawda Akter and Joydev Datta). The court is a real 3D scene built with Three.js, and the signature raider "cant" (the chant a raider holds while breathing, without which a raid is invalid) is implemented as a genuine chant-to-breathe mic mechanic using the Web Audio API and <code>getUserMedia</code> — you actually have to hold a sound to hold your raid. It's a single-file browser game with a turn-based AI defense.</p>
+</div>
+<div class="cs-block">
+<h4>Challenge</h4>
+<p>Getting the mic-based breath/chant mechanic to feel reliable and fair across browsers and devices was the hardest part — background noise, mic permission flows, and latency all had to be handled without making the mechanic feel broken. Fitting full rules complexity (Do-or-Die, Super Tackle, Lona, Golden Raid) into a single-file architecture without a build step added its own constraints.</p>
+</div>
+<div class="cs-block">
+<h4>Result</h4>
+<p>A live, playable single-file game with a real 3D court and a working chant-to-breathe mechanic. Next up: local same-device multiplayer and online realtime multiplayer.</p>
+</div>
+</div>
+</template>
+<template id="cs-skip-clearance">
+<div class="case-study-head">
+<span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span>
+<span class="code-filename">case-study.md — Skip Clearance / Student Success Portal</span>
+</div>
+<div class="cs-meta">
+<span class="cs-tag">3-person team</span>
+<span class="cs-tag">Team lead</span>
+<span class="cs-tag">Vanilla JS</span>
+<span class="cs-tag">Chart.js</span>
+<span class="cs-tag">PWA</span>
+<span class="cs-tag">2nd place — KAIST WFK</span>
+</div>
+<div class="case-study-body">
+<div class="cs-block">
+<h4>Key Features</h4>
+<ul class="cs-list">
+<li>Dashboard, Attendance, CGPA, Installment, Goal Planner &amp; University tabs</li>
+<li>Multi-university presets (UITS, BRAC, AIUB, NSU, EWU, IUB, Green, Southeast, Daffodil + custom)</li>
+<li>Chart.js GPA trend graph and a Goal Planner with an Improvement Calculator</li>
+<li>Installable as a PWA (manifest + service worker + icons) — built by me</li>
+<li>Everything persisted to localStorage, no backend</li>
+</ul>
+</div>
+<div class="cs-block">
+<h4>Problem</h4>
+<p>Bangladeshi university students juggle attendance limits, CGPA tracking, and semester installment costs across separate apps and spreadsheets — with no single tool that answers "how many classes can I still miss?" live, as you type.</p>
+</div>
+<div class="cs-block">
+<h4>Approach</h4>
+<p>A 3-person team build for UITS WFK KIV Batch 1 Demo Day: Sawda Akter on frontend, Joydev Datta on the installment calculator and goal planner, and myself as team lead — owning attendance, CGPA, and turning it into an installable PWA. It grew from a simple attendance/CGPA calculator into a full Student Success Portal: multi-university presets (UITS, BRAC, AIUB, NSU, EWU, IUB, Green, Southeast, Daffodil + custom), a Chart.js GPA trend graph, a goal planner, and an installment calculator, all in a single-file HTML app with no build step and everything saved to localStorage.</p>
+</div>
+<div class="cs-block">
+<h4>Challenge</h4>
+<p>We iterated live against a real HCI course's UX principles (based on a KAIST design deck) under a hard deadline, and it surfaced genuine bugs — dark mode leaving cards light, light mode going all-white. Making it installable as a PWA meant also owning a subtlety most single-file apps never hit: the service worker caches the app for offline use, so every update means bumping its cache version, or returning users keep seeing a stale copy.</p>
+</div>
+<div class="cs-block">
+<h4>Result</h4>
+<p>Delivered on time for Demo Day — video, deck, GitHub repo, and live deployment all submitted before the 9 PM deadline. I gave the live presentation solo. Team-5 placed 2nd in the KAIST WFK program's Final Project Competition for this build.</p>
+</div>
+</div>
+</template>
+<template id="cs-yutnori">
+<div class="case-study-head">
+<span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span>
+<span class="code-filename">case-study.md — Yutnori Online</span>
+</div>
+<div class="cs-meta">
+<span class="cs-tag">3-person team</span>
+<span class="cs-tag">Game logic + backend</span>
+<span class="cs-tag">Node.js</span>
+<span class="cs-tag">Socket.IO</span>
+<span class="cs-tag">Render</span>
+</div>
+<div class="case-study-body">
+<div class="cs-block">
+<h4>Key Features</h4>
+<ul class="cs-list">
+<li>Real-time room/lobby multiplayer — join by code or public lobby, no drop on disconnect</li>
+<li>Full rule engine: captures, piggybacking, backward (Baekdo) moves</li>
+<li>Solo mode vs an AI opponent</li>
+<li>Custom face tokens and a "choose character" screen</li>
+<li>Korean / English / Bangla language support</li>
+</ul>
+</div>
+<div class="cs-block">
+<h4>Problem</h4>
+<p>Most web versions of the traditional Korean board game Yutnori are static, local-only affairs — no real multiplayer, no AI opponent, nothing that feels like a finished game.</p>
+</div>
+<div class="cs-block">
+<h4>Approach</h4>
+<p>Built a Node/Express + Socket.IO backend for real, room/lobby-based multiplayer (join by code or public lobby, no drop on disconnect) with a full rule engine covering captures, piggybacking, and backward (Baekdo) moves, plus a solo AI opponent mode — as a 3-person team where I owned game logic, backend, and deployment.</p>
+</div>
+<div class="cs-block">
+<h4>Challenge</h4>
+<p>A string of animation bugs stood between "working" and "feels right": pieces visually restarting from the board's origin on every move (the server was sending a piece's entire move history as its animation path instead of just the new steps), a ghost-piece bug from stale tokens not being cleared before a new one animated in, and board misalignment from pixel-based positioning drifting over time — solved for good by rebuilding the board's positioning in pure CSS percentages, which structurally can't drift. Also caught a real rules bug where backward Baekdo moves weren't triggering captures.</p>
+</div>
+<div class="cs-block">
+<h4>Result</h4>
+<p>Deployed live on Render as a single service — a working real-time multiplayer game with an accurate rule engine, a solo AI mode, and Korean/English/Bangla language support.</p>
+</div>
+</div>
+</template>
+<template id="cs-sarangsho">
+<div class="case-study-head">
+<span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span>
+<span class="code-filename">case-study.md — সারাংশ (Sarangsho)</span>
+</div>
+<div class="cs-meta">
+<span class="cs-tag">Solo project</span>
+<span class="cs-tag">Gemini API</span>
+<span class="cs-tag">Zero backend</span>
+<span class="cs-tag">Non-commercial license</span>
+</div>
+<div class="case-study-body">
+<div class="cs-block">
+<h4>Key Features</h4>
+<ul class="cs-list">
+<li>AI-powered article summarization on demand</li>
+<li>Bookmarking and organizing saved articles</li>
+<li>Bring-your-own Gemini API key, stored only in the user's own browser</li>
+<li>Entirely static — one HTML file, no server, no backend cost</li>
+</ul>
+</div>
+<div class="cs-block">
+<h4>Problem</h4>
+<p>I wanted an AI article summarizer that costs nothing to run — for me or for anyone using it — which rules out any backend that has to pay for its own API calls.</p>
+</div>
+<div class="cs-block">
+<h4>Approach</h4>
+<p>Built as a single static HTML file with no backend at all. Each user brings their own free Gemini API key, stored only in their own browser's localStorage, and calls go directly from the browser to the Gemini API — I never see or pay for a single request.</p>
+</div>
+<div class="cs-block">
+<h4>Challenge</h4>
+<p>Designing a genuinely zero-backend architecture that's still a complete product — summarization plus bookmarking and organization — with no server-side state to fall back on for anything.</p>
+</div>
+<div class="cs-block">
+<h4>Result</h4>
+<p>Live and fully static, free to host indefinitely since there's no backend cost to me or to users. Released under a non-commercial license — free for personal and educational use.</p>
+</div>
+</div>
+</template>
+<template id="cs-keyforge">
+<div class="case-study-head">
+<span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span>
+<span class="code-filename">case-study.md — KeyForge</span>
+</div>
+<div class="cs-meta">
+<span class="cs-tag">Solo project</span>
+<span class="cs-tag">Vanilla JS</span>
+<span class="cs-tag">Zero dependencies</span>
+<span class="cs-tag">MIT licensed</span>
+</div>
+<div class="case-study-body">
+<div class="cs-block">
+<h4>Key Features</h4>
+<ul class="cs-list">
+<li>Code mode (JS/Python/C++/Java) with syntax highlighting, plus text/custom/zen/challenge modes</li>
+<li>Live stats, a results screen with graphs and a heatmap</li>
+<li>Streaks, personal bests, and 4 themes</li>
+<li>Synthesized mechanical-keyboard sound</li>
+<li>All data in localStorage, no server</li>
+</ul>
+</div>
+<div class="cs-block">
+<h4>Problem</h4>
+<p>Monkeytype-style typing testers are built for general typing, not for programmers — they don't test you on the syntax and punctuation density of actual code.</p>
+</div>
+<div class="cs-block">
+<h4>Approach</h4>
+<p>Built entirely as static HTML/CSS/vanilla JS with zero dependencies and no build step. Modes include real code snippets (JS, Python, C++, Java) with syntax highlighting, plain text, custom text, a distraction-free zen mode, and a challenge mode, with live stats, a results screen with graphs and a heatmap, streaks and personal bests, four themes, and a synthesized mechanical-keyboard sound — all client-side, all saved to localStorage.</p>
+</div>
+<div class="cs-block">
+<h4>Challenge</h4>
+<p>Getting accurate real-time typing metrics — WPM, accuracy, streak tracking — plus a synthesized keyboard sound, all working smoothly with zero external libraries or frameworks to lean on.</p>
+</div>
+<div class="cs-block">
+<h4>Result</h4>
+<p>Live, MIT-licensed, and fully self-contained — nothing to maintain, no dependency updates to ever break it.</p>
+</div>
+</div>
+</template>
+<template id="cs-connectors">
+<div class="case-study-head">
+<span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span>
+<span class="code-filename">case-study.md — Connectors ⚡</span>
+</div>
+<div class="cs-meta">
+<span class="cs-tag">Solo project</span>
+<span class="cs-tag">Supabase Realtime</span>
+<span class="cs-tag">Single HTML file</span>
+</div>
+<div class="case-study-body">
+<div class="cs-block">
+<h4>Key Features</h4>
+<ul class="cs-list">
+<li>No signup — pick a name and avatar, jump straight into a room</li>
+<li>Multiple rooms, joinable via invite links</li>
+<li>Emoji reactions, typing indicators, browser notifications</li>
+<li>Real cross-device sync via Supabase Realtime, with a same-device demo fallback</li>
+<li>Dark/light theme toggle</li>
+</ul>
+</div>
+<div class="cs-block">
+<h4>Problem</h4>
+<p>Most chat apps make you sign up before you can talk to anyone. I wanted something genuinely frictionless — pick a name, pick an emoji, and you're in a room.</p>
+</div>
+<div class="cs-block">
+<h4>Approach</h4>
+<p>A single HTML file with embedded CSS/JS: name and avatar entry, multiple rooms joinable via invite links, emoji reactions, typing indicators, browser notifications, and a dark/light theme toggle. Real cross-device sync runs through Supabase Realtime broadcast plus a messages table, with a same-device-only BroadcastChannel fallback when Supabase isn't configured.</p>
+</div>
+<div class="cs-block">
+<h4>Challenge</h4>
+<p>Making one codebase degrade gracefully between two very different modes — a real, cross-device synced chat when Supabase is configured, and a same-device demo otherwise — without the difference leaking into a broken experience for whichever mode a visitor lands in.</p>
+</div>
+<div class="cs-block">
+<h4>Result</h4>
+<p>Live, with real-time cross-device sync via Supabase Realtime — a genuinely no-signup chat app that works the moment you open it.</p>
+</div>
+</div>
+</template>
+<div class="modal-overlay" id="csModalOverlay">
+<div class="modal-box glow-border" id="csModalBox" role="dialog" aria-modal="true">
+<button class="modal-close" id="csModalClose" aria-label="Close">✕</button>
+<div id="csModalContent"></div>
 </div>
 </div>
 </section>
