@@ -103,8 +103,9 @@
     if (e.key === 'Escape' && sidebar.classList.contains('open')) setSidebar(false);
   });
 
-  // ---------- Ambient dust particles ----------
+  // ---------- Ambient dust particles (skip if reduced motion) ----------
   const field = document.getElementById('particles');
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const pCount = window.innerWidth < 700 ? 12 : 22;
   for (let i = 0; i < pCount; i++) {
     const p = document.createElement('div');
@@ -117,6 +118,7 @@
     p.style.animationDuration = (Math.random() * 12 + 10) + 's';
     p.style.animationDelay = (Math.random() * 10) + 's';
     field.appendChild(p);
+  }
   }
 
   // ---------- Interactive mesh gradient canvas ----------
@@ -148,6 +150,7 @@
 
   function draw() {
     if (document.hidden) { requestAnimationFrame(draw); return; }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // static frame only
     mouseX += (targetX - mouseX) * 0.06;
     mouseY += (targetY - mouseY) * 0.06;
     ctx.clearRect(0, 0, W, H);

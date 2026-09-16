@@ -495,7 +495,7 @@
   @media (max-width: 880px), (pointer: coarse){ .cursor-dot{ display: none; } }
 
   /* ---------- 3D tilt perspective ---------- */
-  .project-grid, .hobby-grid, .skills-grid{ perspective: 1200px; }
+  .project-grid, .hobby-grid, .skills-rows{ perspective: 1200px; }
   .project-card, .hobby-card, .skill-icon-card{ will-change: transform; }
   @media (prefers-reduced-motion: reduce){
     .cursor-dot, .scroll-progress{ display: none; }
@@ -542,3 +542,18 @@
     .skill-icon-card{ min-height: 104px; padding: 14px 6px 10px; }
     .skill-icon-card img{ width: 36px; height: 36px; }
   }
+
+  /* ---------- Career timeline ---------- */
+  .timeline{ display: grid; gap: 14px; margin-top: 18px; }
+  .timeline-item{
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    backdrop-filter: blur(14px);
+    display: grid; grid-template-columns: 110px 1fr; gap: 6px 16px; align-items: baseline;
+  }
+  .timeline-date{ font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--cyan); white-space: nowrap; }
+  .timeline-role{ font-family: 'Space Grotesk', sans-serif; font-size: 14.5px; font-weight: 600; color: var(--ice); }
+  .timeline-sub{ grid-column: 2; font-size: 12.5px; color: var(--slate); }
+  @media (max-width: 600px){ .timeline-item{ grid-template-columns: 1fr; } .timeline-sub{ grid-column: 1; } }
