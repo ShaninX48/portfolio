@@ -61,7 +61,7 @@
 
   // ---------- Sidebar active link + scroll reveal ----------
   const navLinks = document.querySelectorAll('.nav-link');
-  const sections = ['top', 'about', 'projects', 'hobbies', 'career', 'contact'].map(id => document.getElementById(id));
+  const sections = ['top', 'about', 'skills', 'projects', 'hobbies', 'career', 'contact'].map(id => document.getElementById(id));
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -251,7 +251,7 @@
       tx = e.clientX; ty = e.clientY;
       dot.classList.add('visible');
     });
-    document.querySelectorAll('a, button, .project-card, .hobby-card, .contact-card').forEach(el => {
+    document.querySelectorAll('a, button, .project-card, .hobby-card, .skill-card, .contact-card').forEach(el => {
       el.addEventListener('mouseenter', () => dot.classList.add('hover'));
       el.addEventListener('mouseleave', () => dot.classList.remove('hover'));
     });
@@ -267,7 +267,7 @@
 
   // ---------- 3D tilt on project & hobby cards ----------
   if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
-    document.querySelectorAll('.project-card, .hobby-card').forEach(card => {
+    document.querySelectorAll('.project-card, .hobby-card, .skill-card').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const px = (e.clientX - rect.left) / rect.width;
