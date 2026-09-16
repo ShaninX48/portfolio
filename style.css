@@ -182,7 +182,7 @@
     margin: 0 0 34px 0;
     opacity: 0;
     transform: translateY(12px);
-    animation: riseIn 0.8s ease forwards 2.4s;
+    animation: riseIn 0.8s ease forwards 0.9s;
   }
   .hero-role .accent{ color: var(--cyan); }
   @keyframes riseIn{ to{ opacity: 1; transform: translateY(0); } }
@@ -190,7 +190,7 @@
   .hero-meta{
     display: flex; flex-wrap: wrap; gap: 14px;
     opacity: 0;
-    animation: riseIn 0.8s ease forwards 2.7s;
+    animation: riseIn 0.8s ease forwards 1.1s;
   }
   .chip{
     display: inline-flex; align-items: center; gap: 8px;
@@ -208,7 +208,7 @@
     position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
     font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--slate);
     display: flex; flex-direction: column; align-items: center; gap: 8px;
-    opacity: 0; animation: riseIn 0.8s ease forwards 3.1s;
+    opacity: 0; animation: riseIn 0.8s ease forwards 1.4s;
   }
   .scroll-hint .bar{
     width: 1px; height: 34px;
@@ -233,6 +233,22 @@
 
   .reveal{ opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.in-view{ opacity: 1; transform: translateY(0); }
+  .no-js .reveal, .no-js .hero-role, .no-js .hero-meta, .no-js .scroll-hint{ opacity: 1 !important; transform: none !important; }
+
+  /* ---------- Skip link ---------- */
+  .skip-link{
+    position: fixed; top: -60px; left: 12px; z-index: 400;
+    background: var(--cyan); color: #05070d; font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 600; padding: 10px 16px; border-radius: 8px;
+    text-decoration: none; transition: top 0.2s ease;
+  }
+  .skip-link:focus-visible{ top: 12px; }
+  :focus-visible{ outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+  @media (max-width: 700px){
+    section{ padding: 72px 20px; }
+    .hero{ padding-top: 84px; }
+  }
 
   /* ---------- Code card ---------- */
   .code-card{

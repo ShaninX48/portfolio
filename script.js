@@ -1,4 +1,5 @@
 // ---------- Terminal boot sequence ----------
+  document.documentElement.classList.remove('no-js');
   const lines = [
     { prompt: '$', text: 'whoami' },
     { prompt: '>', text: 'MD Tanveer Mahmood Shanin' },
@@ -17,6 +18,7 @@
   });
 
   // ---------- Scramble text hero title ----------
+  const reduceMotionEarly = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ01!@#$%&*<>/\\';
   function scrambleInto(el, text, opts) {
     const { startDelay = 0, charDelay = 40, revealSpan = 26 } = opts || {};
@@ -51,7 +53,10 @@
     });
   }
   window.addEventListener('DOMContentLoaded', () => {
-    scrambleInto(document.getElementById('heroName'), 'MD Tanveer Mahmood Shanin', { startDelay: 550, charDelay: 34 });
+    const heroEl = document.getElementById('heroName');
+    if (!heroEl) return;
+    if (reduceMotionEarly) return; // keep static H1 for SEO + reduced motion
+    scrambleInto(heroEl, 'MD Tanveer Mahmood Shanin', { startDelay: 200, charDelay: 22 });
   });
 
   // ---------- Sidebar active link + scroll reveal ----------
@@ -77,12 +82,26 @@
     });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  // Fallback: never leave content invisible if observer fails
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.in-view)').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 1.2) el.classList.add('in-view');
+    });
+  }, 3000);
 
   // ---------- Mobile sidebar toggle ----------
   const sidebar = document.getElementById('sidebar');
   const toggleBtn = document.getElementById('sidebarToggle');
-  toggleBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
-  navLinks.forEach(l => l.addEventListener('click', () => sidebar.classList.remove('open')));
+  function setSidebar(open) {
+    sidebar.classList.toggle('open', open);
+    toggleBtn.setAttribute('aria-expanded', String(open));
+  }
+  toggleBtn.addEventListener('click', () => setSidebar(!sidebar.classList.contains('open')));
+  navLinks.forEach(l => l.addEventListener('click', () => setSidebar(false)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sidebar.classList.contains('open')) setSidebar(false);
+  });
 
   // ---------- Ambient dust particles ----------
   const field = document.getElementById('particles');
@@ -128,6 +147,7 @@
   ];
 
   function draw() {
+    if (document.hidden) { requestAnimationFrame(draw); return; }
     mouseX += (targetX - mouseX) * 0.06;
     mouseY += (targetY - mouseY) * 0.06;
     ctx.clearRect(0, 0, W, H);
@@ -163,15 +183,23 @@
     const tpl = document.getElementById('cs-' + key);
     if (!tpl || !csOverlay || !csContent) return;
     csContent.innerHTML = '';
-    csContent.appendChild(tpl.content.cloneNode(true));
+    const clone = tpl.content.cloneNode(true);
+    // Give dialog a title for screen readers (first .code-filename)
+    const fname = clone.querySelector('.code-filename');
+    if (fname) {
+      fname.id = 'csModalTitle';
+    }
+    csContent.appendChild(clone);
     lastFocused = document.activeElement;
     csOverlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+    document.querySelector('main').setAttribute('inert', '');
     csClose.focus();
   }
   function closeCaseStudy() {
     csOverlay.classList.remove('open');
     document.body.style.overflow = '';
+    document.querySelector('main').removeAttribute('inert');
     if (lastFocused) lastFocused.focus();
   }
   document.querySelectorAll('.details-btn').forEach(btn => {
@@ -185,6 +213,15 @@
   }
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && csOverlay && csOverlay.classList.contains('open')) closeCaseStudy();
+    // Focus trap inside modal
+    if (e.key === 'Tab' && csOverlay && csOverlay.classList.contains('open')) {
+      const focusables = csOverlay.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
   });
 
   // ---------- Reduced motion check ----------
