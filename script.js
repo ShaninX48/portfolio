@@ -238,9 +238,32 @@
     csOverlay.addEventListener('click', (e) => {
       if (e.target === csOverlay) closeCaseStudy();
     });
+    // Manual scroll backup: some browsers trap nested/flex overlay
+    // scrolling, so drive the overlay scroll directly.
+    csOverlay.addEventListener('wheel', (e) => {
+      if (!csOverlay.classList.contains('open')) return;
+      e.preventDefault();
+      csOverlay.scrollTop += (e.deltaY || 0);
+    }, { passive: false });
+    let touchY = null;
+    csOverlay.addEventListener('touchstart', (e) => {
+      touchY = e.touches[0].clientY;
+    }, { passive: true });
+    csOverlay.addEventListener('touchmove', (e) => {
+      if (touchY === null || !csOverlay.classList.contains('open')) return;
+      e.preventDefault();
+      csOverlay.scrollTop += touchY - e.touches[0].clientY;
+      touchY = e.touches[0].clientY;
+    }, { passive: false });
   }
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && csOverlay && csOverlay.classList.contains('open')) closeCaseStudy();
+    // Keyboard scroll inside modal for users without a wheel
+    if (csOverlay && csOverlay.classList.contains('open')) {
+      const step = window.innerHeight * 0.6;
+      if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); csOverlay.scrollTop += step; return; }
+      if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); csOverlay.scrollTop -= step; return; }
+    }
     // Focus trap inside modal
     if (e.key === 'Tab' && csOverlay && csOverlay.classList.contains('open')) {
       const focusables = csOverlay.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');

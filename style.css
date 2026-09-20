@@ -406,7 +406,7 @@
   .modal-overlay.open{ display: flex; opacity: 1; }
   .modal-box{
     position: relative; max-width: 640px; width: 100%;
-    border-radius: 14px; background: #0a0e18; margin: auto;
+    border-radius: 14px; background: #0a0e18; margin: 0 auto;
     transform: translateY(16px) scale(0.98); transition: transform 0.25s ease;
   }
   .modal-overlay.open .modal-box{ transform: translateY(0) scale(1); }
