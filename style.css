@@ -394,23 +394,33 @@
   .contact-label{ font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--slate-dim); margin-bottom: 4px; }
   .contact-value{ font-family: 'Space Grotesk', sans-serif; font-size: 14.5px; font-weight: 600; color: var(--ice); word-break: break-word; }
 
-  /* ---------- Inline case study (expands in card) ---------- */
-  .inline-case{
-    margin-top: 18px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    background: rgba(255,255,255,0.02);
-    animation: caseIn 0.35s ease;
+  /* ---------- Case study modal (overlay scrolls, box natural height) ---------- */
+  .modal-overlay{
+    position: fixed; inset: 0; z-index: 300;
+    background: rgba(5,7,13,0.75); backdrop-filter: blur(4px);
+    display: none; padding: 40px 24px;
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
   }
-  @keyframes caseIn{
-    from{ opacity: 0; transform: translateY(-8px); }
-    to{ opacity: 1; transform: translateY(0); }
+  .modal-overlay.open{ display: block; }
+  .modal-box{
+    position: relative; max-width: 640px; width: 100%; margin: 0 auto;
+    border-radius: 14px; background: #0a0e18;
+    animation: modalIn 0.22s ease;
   }
+  @keyframes modalIn{ from{ opacity: 0; } to{ opacity: 1; } }
+  .modal-close{
+    position: sticky; top: 12px; z-index: 2;
+    display: block; margin-left: auto; margin-right: 12px;
+    background: rgba(255,255,255,0.08); border: 1px solid var(--border); color: #fff;
+    width: 36px; height: 36px; border-radius: 8px; cursor: pointer; font-size: 0.95rem;
+    transition: background 0.2s ease;
+  }
+  .modal-close:hover{ background: rgba(255,255,255,0.14); }
   .details-btn{
     background: none; cursor: pointer; font: inherit;
     border: none; padding: 0; margin: 0; outline-offset: 3px;
   }
+  @media (max-width: 600px){ .modal-overlay{ padding: 24px 12px; } }
 
   /* ---------- Case study ---------- */
   .case-study{

@@ -201,41 +201,48 @@
   }
   draw();
 
-  // ---------- Inline case studies (normal page scroll) ----------
-  // Details expands below its own project card — no modal, no scroll traps.
-  let openCase = null; // { btn, box }
-  function closeCase() {
-    if (!openCase) return;
-    openCase.box.remove();
-    openCase.btn.textContent = 'Details';
-    openCase.btn.setAttribute('aria-expanded', 'false');
-    openCase = null;
+  // ---------- Case study modal (overlay is the single scroller) ----------
+  const csOverlay = document.getElementById('csModalOverlay');
+  const csContent = document.getElementById('csModalContent');
+  const csClose = document.getElementById('csModalClose');
+  let lastFocused = null;
+
+  function openCaseStudy(key) {
+    const tpl = document.getElementById('cs-' + key);
+    if (!tpl || !csOverlay || !csContent) return;
+    csContent.innerHTML = '';
+    const clone = tpl.content.cloneNode(true);
+    const fname = clone.querySelector('.code-filename');
+    if (fname) fname.id = 'csModalTitle';
+    csContent.appendChild(clone);
+    lastFocused = document.activeElement;
+    csOverlay.classList.add('open');
+    csOverlay.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+    csClose.focus();
+  }
+  function closeCaseStudy() {
+    if (!csOverlay.classList.contains('open')) return;
+    csOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocused) lastFocused.focus();
   }
   document.querySelectorAll('.details-btn').forEach(btn => {
+    if (btn.textContent.trim() !== 'Details') btn.textContent = 'Details';
     btn.setAttribute('aria-expanded', 'false');
     btn.addEventListener('click', () => {
-      const wasOpen = openCase && openCase.btn === btn;
-      closeCase();
-      if (wasOpen) return;
-      const tpl = document.getElementById('cs-' + btn.dataset.caseStudy);
-      const card = btn.closest('.project-card');
-      if (!tpl || !card) return;
-      const box = document.createElement('div');
-      box.className = 'inline-case glow-border';
-      box.appendChild(tpl.content.cloneNode(true));
-      card.appendChild(box);
-      btn.textContent = 'Close';
+      openCaseStudy(btn.dataset.caseStudy);
       btn.setAttribute('aria-expanded', 'true');
-      openCase = { btn, box };
-      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
   });
+  if (csClose) csClose.addEventListener('click', closeCaseStudy);
+  if (csOverlay) {
+    csOverlay.addEventListener('click', (e) => {
+      if (e.target === csOverlay) closeCaseStudy();
+    });
+  }
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && openCase) {
-      const btn = openCase.btn;
-      closeCase();
-      btn.focus();
-    }
+    if (e.key === 'Escape' && csOverlay && csOverlay.classList.contains('open')) closeCaseStudy();
   });
 
   // ---------- Reduced motion check ----------
