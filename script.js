@@ -59,25 +59,43 @@
     scrambleInto(heroEl, 'MD Tanveer Mahmood Shanin', { startDelay: 200, charDelay: 22 });
   });
 
-  // ---------- Sidebar active link + scroll reveal ----------
+  // ---------- Sidebar active link (position-based scroll spy) ----------
+  // Ratio-based IntersectionObserver fails on tall sections (ratio is
+  // relative to the section's own height), so the active link could stick
+  // on hero.init forever. Marker-based spy works for any height.
   const navLinks = document.querySelectorAll('.nav-link');
-  const sections = ['top', 'about', 'skills', 'projects', 'hobbies', 'career', 'certificates', 'contact'].map(id => document.getElementById(id));
-  const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        const link = document.querySelector(`.nav-link[data-target="${entry.target.id}"]`);
-        if (link) {
-          link.classList.add('active');
-          // Retrigger glow pulse on section change
-          link.classList.remove('pulse');
-          void link.offsetWidth;
-          link.classList.add('pulse');
-        }
+  const spySections = ['top', 'about', 'skills', 'projects', 'hobbies', 'career', 'certificates', 'contact']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+  function setActiveLink(id) {
+    navLinks.forEach(l => {
+      const on = l.dataset.target === id;
+      if (on && !l.classList.contains('active')) {
+        l.classList.add('active');
+        // Retrigger glow pulse on section change
+        l.classList.remove('pulse');
+        void l.offsetWidth;
+        l.classList.add('pulse');
+      } else if (!on) {
+        l.classList.remove('active');
       }
     });
-  }, { threshold: 0.4, rootMargin: '-10% 0px -60% 0px' });
-  sections.forEach(s => s && sectionObserver.observe(s));
+  }
+  let spyTicking = false;
+  function updateSpy() {
+    spyTicking = false;
+    const marker = window.scrollY + window.innerHeight * 0.35;
+    let current = spySections[0];
+    spySections.forEach(s => {
+      if (s.getBoundingClientRect().top + window.scrollY <= marker) current = s;
+    });
+    if (current) setActiveLink(current.id);
+  }
+  window.addEventListener('scroll', () => {
+    if (!spyTicking) { spyTicking = true; requestAnimationFrame(updateSpy); }
+  }, { passive: true });
+  window.addEventListener('resize', updateSpy);
+  updateSpy();
 
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
