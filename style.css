@@ -139,6 +139,7 @@
     min-height: 100vh;
     display: flex; flex-direction: column; justify-content: center;
     padding-top: 100px;
+    padding-bottom: 90px;
     max-width: 980px;
   }
   .terminal{
@@ -247,7 +248,13 @@
 
   @media (max-width: 700px){
     section{ padding: 72px 20px; }
-    .hero{ padding-top: 84px; }
+    .hero{ padding-top: 84px; padding-bottom: 48px; min-height: auto; }
+    .hero-name{ font-size: clamp(1.9rem, 9vw, 2.6rem); overflow-wrap: break-word; }
+    .hero-name .scramble-word{ white-space: normal; }
+    .terminal{ font-size: 12.5px; min-height: 80px; margin-bottom: 22px; }
+    .hero-role{ margin-bottom: 26px; }
+    .scroll-hint{ display: none; }
+    .resume-btn{ width: 100%; justify-content: center; }
   }
 
   /* ---------- Code card ---------- */
