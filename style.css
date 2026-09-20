@@ -99,6 +99,14 @@
   .tree a:hover, .tree a:focus-visible{ color: var(--ice); padding-left: 9px; background: rgba(0,232,255,0.06); }
   .tree a.active{ color: var(--cyan); background: rgba(0,232,255,0.08); }
   .tree a.active .branch{ color: var(--cyan); }
+  .tree a.pulse{ animation: navPulse 0.9s ease; }
+  @keyframes navPulse{
+    0%{ box-shadow: 0 0 0 0 rgba(0,232,255,0.55); background: rgba(0,232,255,0.16); }
+    100%{ box-shadow: 0 0 0 12px rgba(0,232,255,0); background: rgba(0,232,255,0.08); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .tree a.pulse{ animation: none; }
+  }
 
   .sidebar-status{
     margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border);

@@ -67,7 +67,13 @@
       if (entry.isIntersecting) {
         navLinks.forEach(l => l.classList.remove('active'));
         const link = document.querySelector(`.nav-link[data-target="${entry.target.id}"]`);
-        if (link) link.classList.add('active');
+        if (link) {
+          link.classList.add('active');
+          // Retrigger glow pulse on section change
+          link.classList.remove('pulse');
+          void link.offsetWidth;
+          link.classList.add('pulse');
+        }
       }
     });
   }, { threshold: 0.4, rootMargin: '-10% 0px -60% 0px' });
