@@ -43,18 +43,19 @@
     background-size: 44px 44px;
     mask-image: radial-gradient(ellipse 85% 65% at 60% 15%, black, transparent 75%);
   }
-  #particles{ position: fixed; inset: 0; z-index: -1; pointer-events: none; }
-  .particle{
-    position: absolute; border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,232,255,0.85), rgba(0,232,255,0) 70%);
-    filter: blur(0.5px);
-    animation: drift linear infinite;
+  #particles{ position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+  .code-symbol{
+    position: absolute; bottom: -8vh;
+    font-family: 'JetBrains Mono', monospace;
+    color: rgba(0,232,255,0.5);
+    user-select: none;
+    animation: riseFade linear infinite;
   }
-  @keyframes drift{
-    0%{ transform: translateY(0) translateX(0); opacity:0; }
-    10%{ opacity: 0.45; }
-    90%{ opacity: 0.3; }
-    100%{ transform: translateY(-110vh) translateX(20px); opacity:0; }
+  @keyframes riseFade{
+    0%{ transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+    12%{ opacity: var(--sym-o, 0.35); }
+    85%{ opacity: var(--sym-o, 0.35); }
+    100%{ transform: translateY(-115vh) translateX(24px) rotate(8deg); opacity: 0; }
   }
 
   /* ---------- Glowing gradient border utility ---------- */

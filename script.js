@@ -127,21 +127,22 @@
     if (e.key === 'Escape' && sidebar.classList.contains('open')) setSidebar(false);
   });
 
-  // ---------- Ambient dust particles (skip if reduced motion) ----------
+  // ---------- Floating code symbols (replaces dust particles) ----------
   const field = document.getElementById('particles');
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  const pCount = window.innerWidth < 700 ? 12 : 22;
-  for (let i = 0; i < pCount; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size = Math.random() * 3 + 1.5;
-    p.style.width = size + 'px';
-    p.style.height = size + 'px';
-    p.style.left = Math.random() * 100 + 'vw';
-    p.style.bottom = (Math.random() * -20 - 5) + 'vh';
-    p.style.animationDuration = (Math.random() * 12 + 10) + 's';
-    p.style.animationDelay = (Math.random() * 10) + 's';
-    field.appendChild(p);
+  const SYMBOLS = ['{', '}', '<', '/>', ';', '=', '#', '$', '()', '[]', '=>', '*', '_'];
+  const sCount = window.innerWidth < 700 ? 10 : 18;
+  for (let i = 0; i < sCount; i++) {
+    const s = document.createElement('span');
+    s.className = 'code-symbol';
+    s.textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+    s.setAttribute('aria-hidden', 'true');
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.fontSize = (Math.random() * 12 + 10) + 'px';
+    s.style.setProperty('--sym-o', (Math.random() * 0.3 + 0.15).toFixed(2));
+    s.style.animationDuration = (Math.random() * 9 + 9) + 's';
+    s.style.animationDelay = (Math.random() * 10) + 's';
+    field.appendChild(s);
   }
   }
 
