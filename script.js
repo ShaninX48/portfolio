@@ -61,7 +61,7 @@
 
   // ---------- Sidebar active link + scroll reveal ----------
   const navLinks = document.querySelectorAll('.nav-link');
-  const sections = ['top', 'about', 'skills', 'projects', 'hobbies', 'career', 'contact'].map(id => document.getElementById(id));
+  const sections = ['top', 'about', 'skills', 'projects', 'hobbies', 'career', 'certificates', 'contact'].map(id => document.getElementById(id));
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
