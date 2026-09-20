@@ -162,6 +162,22 @@
 <div class="project-grid">
 <div class="project-card reveal glow-border" tabindex="0">
 <div class="project-status"><span class="status-dot"></span>live</div>
+<div class="project-name">Petition Hub</div>
+<div class="project-desc">A civic petition platform — file petitions with location, admin review queue, verified public register with signatures, trending + nearby (10 km) feeds, auth with sign-once enforcement, and dark/light mode. Next.js + React frontend on a Supabase backend with RLS.</div>
+<div class="project-tags">
+<span class="project-tag">Next.js</span>
+<span class="project-tag">React</span>
+<span class="project-tag">TypeScript</span>
+<span class="project-tag">Supabase</span>
+</div>
+<div class="project-links">
+<a class="project-link" href="https://github.com/ShaninX48/petition-hub" target="_blank" rel="noopener noreferrer">GitHub</a>
+<a class="project-link" href="https://petition-hub-beige.vercel.app" target="_blank" rel="noopener noreferrer">Live Demo</a>
+<button class="project-link details-btn" data-case-study="petition-hub" type="button">Details</button>
+</div>
+</div>
+<div class="project-card reveal glow-border" tabindex="0">
+<div class="project-status"><span class="status-dot"></span>live</div>
 <div class="project-name">Kabaddi: Raid Master</div>
 <div class="project-desc">A single-file, browser-based Kabaddi game — turn-based raid strategy against an AI defense, a real 3D court built with Three.js, and a chant-to-breathe mic mechanic for holding your "cant." Implements authentic rules: Do-or-Die raids, Super Tackles, All-Out/Lona, and a Golden Raid tie-breaker. Built with a 3-person team.</div>
 <div class="project-tags">
@@ -548,6 +564,51 @@
 <div class="cs-block">
 <h4>Result</h4>
 <p>Live, with real-time cross-device sync via Supabase Realtime — a genuinely no-signup chat app that works the moment you open it.</p>
+</div>
+</div>
+</template>
+<template id="cs-petition-hub">
+<div class="case-study-head">
+<span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span>
+<span class="code-filename">case-study.md — Petition Hub</span>
+</div>
+<div class="cs-meta">
+<span class="cs-tag">Solo project</span>
+<span class="cs-tag">Next.js</span>
+<span class="cs-tag">React</span>
+<span class="cs-tag">TypeScript</span>
+<span class="cs-tag">Supabase</span>
+</div>
+<div class="case-study-body">
+<div class="cs-block">
+<h4>Key Features</h4>
+<ul class="cs-list">
+<li>File a petition with category, text location + pinned GPS coordinates</li>
+<li>Admin review queue — approve to verified-public, reject with note</li>
+<li>Public trending register with signature counts + weekly momentum</li>
+<li>Nearby petitions within 10 km via PostGIS, with reverse-geocoded labels</li>
+<li>One signature per user, auth-gated signing, dark/light mode</li>
+</ul>
+</div>
+<div class="cs-block">
+<h4>Problem</h4>
+<p>Local civic issues — roadblocks, pollution, broken utilities — have no structured public register. Complaints scatter across social media with no verification, no signature count, and no way to see what's trending nearby.</p>
+</div>
+<div class="cs-block">
+<h4>Approach</h4>
+<p>Next.js + React + TypeScript frontend on Supabase: Postgres with RLS, a <code>trending_petitions</code> view for ranked feeds, and a <code>nearby_petitions()</code> PostGIS function for geo search. Petitions land as <code>pending</code>, admins flip them to verified-public, and signatures are unique per user. The new-petition form reverse-geocodes GPS into a readable area label.</p>
+</div>
+<div class="cs-block">
+<h4>Challenge</h4>
+<p>The homepage stuck on "Loading…" when the backend stalled — a hanging promise with no timeout. Fixed with a 10-second timeout, a clear error message, and a Retry button, so the UI degrades gracefully instead of hanging forever.</p>
+</div>
+<div class="cs-block">
+<h4>Result</h4>
+<p>Live end-to-end: file → admin approve → verified trending with signature counts and weekly momentum, plus location-based discovery.</p>
+<div class="cs-links">
+<a class="project-link" href="https://github.com/ShaninX48/petition-hub" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+<a class="project-link" href="https://petition-hub-beige.vercel.app" target="_blank" rel="noopener noreferrer">Live Demo ↗</a>
+</div>
 </div>
 </div>
 </template>
