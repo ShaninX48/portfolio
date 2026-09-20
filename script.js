@@ -201,77 +201,40 @@
   }
   draw();
 
-  // ---------- Case study modal ----------
-  const csOverlay = document.getElementById('csModalOverlay');
-  const csContent = document.getElementById('csModalContent');
-  const csClose = document.getElementById('csModalClose');
-  let lastFocused = null;
-
-  function openCaseStudy(key) {
-    const tpl = document.getElementById('cs-' + key);
-    if (!tpl || !csOverlay || !csContent) return;
-    csContent.innerHTML = '';
-    const clone = tpl.content.cloneNode(true);
-    // Give dialog a title for screen readers (first .code-filename)
-    const fname = clone.querySelector('.code-filename');
-    if (fname) {
-      fname.id = 'csModalTitle';
-    }
-    csContent.appendChild(clone);
-    lastFocused = document.activeElement;
-    csOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    document.querySelector('main').setAttribute('inert', '');
-    csClose.focus();
-  }
-  function closeCaseStudy() {
-    csOverlay.classList.remove('open');
-    document.body.style.overflow = '';
-    document.querySelector('main').removeAttribute('inert');
-    if (lastFocused) lastFocused.focus();
+  // ---------- Inline case studies (normal page scroll) ----------
+  // Details expands below its own project card — no modal, no scroll traps.
+  let openCase = null; // { btn, box }
+  function closeCase() {
+    if (!openCase) return;
+    openCase.box.remove();
+    openCase.btn.textContent = 'Details';
+    openCase.btn.setAttribute('aria-expanded', 'false');
+    openCase = null;
   }
   document.querySelectorAll('.details-btn').forEach(btn => {
-    btn.addEventListener('click', () => openCaseStudy(btn.dataset.caseStudy));
-  });
-  if (csClose) csClose.addEventListener('click', closeCaseStudy);
-  if (csOverlay) {
-    csOverlay.addEventListener('click', (e) => {
-      if (e.target === csOverlay) closeCaseStudy();
+    btn.setAttribute('aria-expanded', 'false');
+    btn.addEventListener('click', () => {
+      const wasOpen = openCase && openCase.btn === btn;
+      closeCase();
+      if (wasOpen) return;
+      const tpl = document.getElementById('cs-' + btn.dataset.caseStudy);
+      const card = btn.closest('.project-card');
+      if (!tpl || !card) return;
+      const box = document.createElement('div');
+      box.className = 'inline-case glow-border';
+      box.appendChild(tpl.content.cloneNode(true));
+      card.appendChild(box);
+      btn.textContent = 'Close';
+      btn.setAttribute('aria-expanded', 'true');
+      openCase = { btn, box };
+      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     });
-    // Manual scroll backup: some browsers trap nested/flex overlay
-    // scrolling, so drive the overlay scroll directly.
-    csOverlay.addEventListener('wheel', (e) => {
-      if (!csOverlay.classList.contains('open')) return;
-      e.preventDefault();
-      csOverlay.scrollTop += (e.deltaY || 0);
-    }, { passive: false });
-    let touchY = null;
-    csOverlay.addEventListener('touchstart', (e) => {
-      touchY = e.touches[0].clientY;
-    }, { passive: true });
-    csOverlay.addEventListener('touchmove', (e) => {
-      if (touchY === null || !csOverlay.classList.contains('open')) return;
-      e.preventDefault();
-      csOverlay.scrollTop += touchY - e.touches[0].clientY;
-      touchY = e.touches[0].clientY;
-    }, { passive: false });
-  }
+  });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && csOverlay && csOverlay.classList.contains('open')) closeCaseStudy();
-    // Keyboard scroll inside modal for users without a wheel
-    if (csOverlay && csOverlay.classList.contains('open')) {
-      const step = window.innerHeight * 0.6;
-      if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); csOverlay.scrollTop += step; return; }
-      if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); csOverlay.scrollTop -= step; return; }
-    }
-    // Focus trap inside modal
-    if (e.key === 'Tab' && csOverlay && csOverlay.classList.contains('open')) {
-      const focusables = csOverlay.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
-      if (!focusables.length) return;
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
-      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    if (e.key === 'Escape' && openCase) {
+      const btn = openCase.btn;
+      closeCase();
+      btn.focus();
     }
   });
 
