@@ -146,9 +146,9 @@
   /* ---------- Hero ---------- */
   .hero{
     min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    padding-top: 100px;
-    padding-bottom: 90px;
+    display: flex; flex-direction: column; justify-content: flex-start;
+    padding-top: 130px;
+    padding-bottom: 120px;
     max-width: 980px;
   }
   .terminal{
@@ -457,7 +457,7 @@
   .cs-links{ display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
 
   /* ---------- Resume button ---------- */
-  .resume-btn{ margin-top: 16px; display: inline-flex; }
+  .resume-btn{ margin-top: 16px; display: inline-flex; align-self: flex-start; }
 
   /* ---------- Highlights strip ---------- */
   .highlights{
