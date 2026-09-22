@@ -328,6 +328,12 @@
   .project-status.planned{ color: var(--slate-dim); }
   .project-status.planned .status-dot{ background: var(--slate-dim); box-shadow: none; animation: none; }
   .project-name{ font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: var(--ice); margin-bottom: 8px; }
+  .shot{
+    display: block; width: calc(100% + 48px); margin: 14px -24px 18px;
+    aspect-ratio: 16 / 9; object-fit: cover;
+    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    background: #0a0e18;
+  }
   .project-desc{ font-size: 13.5px; color: var(--slate); line-height: 1.7; margin-bottom: 16px; flex-grow: 1; }
   .project-tags{ display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
   .project-tag{
