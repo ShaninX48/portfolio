@@ -67,10 +67,9 @@
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor; mask-composite: exclude;
     opacity: 0; transition: opacity 0.35s ease;
-    animation: shift 4s linear infinite;
     pointer-events: none; z-index: 1;
   }
-  .glow-border:hover::before, .glow-border:focus-visible::before{ opacity: 1; }
+  .glow-border:hover::before, .glow-border:focus-visible::before{ opacity: 1; animation: shift 4s linear infinite; }
   .glow-border:hover, .glow-border:focus-visible{
     box-shadow: 0 0 18px rgba(0,232,255,0.10), 0 0 40px rgba(124,92,255,0.06);
   }
@@ -420,9 +419,6 @@
   @media (max-width: 600px){ .modal-overlay{ padding: 24px 12px; } }
 
   /* ---------- Case study ---------- */
-  .case-study{
-    margin-top: 28px; padding: 0; overflow: hidden; border-radius: 14px;
-  }
   .case-study-head{
     display: flex; align-items: center; gap: 8px;
     padding: 12px 18px; background: rgba(255,255,255,0.04);
@@ -442,7 +438,7 @@
   .cs-list{ margin: 0; padding-left: 20px; color: rgba(255,255,255,0.75); line-height: 1.7; }
   .cs-list li{ margin-bottom: 4px; }
   .cs-list li::marker{ color: var(--cyan); }
-  .cs-block h4{
+  .cs-block h3{
     font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; letter-spacing: 0.08em;
     text-transform: uppercase; color: var(--cyan); margin: 0 0 8px;
   }
@@ -546,8 +542,6 @@
   }
   .skill-icon-card:hover, .skill-icon-card:focus-visible{ transform: translateY(-5px); background: rgba(0,232,255,0.06); }
   .skill-icon-card img{ width: 44px; height: 44px; object-fit: contain; display: block; }
-  .skill-icon-card .invert-icon{ filter: invert(1); }
-  .skill-icon-card .si-emoji{ font-size: 38px; line-height: 44px; display: block; color: var(--cyan); }
   .skill-icon-card span:last-child{ font-family: 'Inter', sans-serif; font-size: 12.5px; color: rgba(243,246,255,0.85); }
   @media (max-width: 700px){
     .skill-row{ grid-template-columns: 1fr; gap: 14px; }

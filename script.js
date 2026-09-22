@@ -219,12 +219,15 @@
     csOverlay.classList.add('open');
     csOverlay.scrollTop = 0;
     document.body.style.overflow = 'hidden';
+    document.querySelector('main').setAttribute('inert', '');
     csClose.focus();
   }
   function closeCaseStudy() {
     if (!csOverlay.classList.contains('open')) return;
     csOverlay.classList.remove('open');
     document.body.style.overflow = '';
+    document.querySelector('main').removeAttribute('inert');
+    document.querySelectorAll('.details-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
     if (lastFocused) lastFocused.focus();
   }
   document.querySelectorAll('.details-btn').forEach(btn => {
@@ -243,6 +246,15 @@
   }
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && csOverlay && csOverlay.classList.contains('open')) closeCaseStudy();
+    // Keep keyboard focus inside the open dialog
+    if (e.key === 'Tab' && csOverlay && csOverlay.classList.contains('open')) {
+      const focusables = csOverlay.querySelectorAll('button, a[href]');
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
   });
 
   // ---------- Reduced motion check ----------
