@@ -330,7 +330,7 @@
   .project-name{ font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: var(--ice); margin-bottom: 8px; }
   .shot{
     display: block; width: calc(100% + 48px); margin: 14px -24px 18px;
-    aspect-ratio: 16 / 9; object-fit: cover;
+    height: auto;
     border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
     background: #0a0e18;
   }
