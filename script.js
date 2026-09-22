@@ -243,6 +243,23 @@
     csOverlay.addEventListener('click', (e) => {
       if (e.target === csOverlay) closeCaseStudy();
     });
+    // Manual scroll drive: guarantees wheel/touch scroll the overlay
+    // even where native nested-scroll chaining misbehaves.
+    csOverlay.addEventListener('wheel', (e) => {
+      if (!csOverlay.classList.contains('open')) return;
+      e.preventDefault();
+      csOverlay.scrollTop += (e.deltaY || 0);
+    }, { passive: false });
+    let touchY = null;
+    csOverlay.addEventListener('touchstart', (e) => {
+      touchY = e.touches[0].clientY;
+    }, { passive: true });
+    csOverlay.addEventListener('touchmove', (e) => {
+      if (touchY === null || !csOverlay.classList.contains('open')) return;
+      e.preventDefault();
+      csOverlay.scrollTop += touchY - e.touches[0].clientY;
+      touchY = e.touches[0].clientY;
+    }, { passive: false });
   }
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && csOverlay && csOverlay.classList.contains('open')) closeCaseStudy();
