@@ -59,6 +59,23 @@
     scrambleInto(heroEl, 'MD Tanveer Mahmood', { startDelay: 200, charDelay: 22 });
   });
 
+  // ---------- Stats count-up (static numbers stay if JS/reduced-motion off) ----------
+  window.addEventListener('DOMContentLoaded', () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.querySelectorAll('.stat-num[data-count]').forEach(el => {
+      const target = parseInt(el.dataset.count, 10);
+      if (!target || target <= 0) return;
+      const dur = 1200;
+      const t0 = performance.now() + 1400; // wait until strip fades in
+      function tick(now) {
+        const p = Math.min(Math.max((now - t0) / dur, 0), 1);
+        el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  });
+
   // ---------- Sidebar active link (position-based scroll spy) ----------
   // Ratio-based IntersectionObserver fails on tall sections (ratio is
   // relative to the section's own height), so the active link could stick

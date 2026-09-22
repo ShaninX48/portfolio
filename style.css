@@ -239,7 +239,7 @@
 
   .reveal{ opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.in-view{ opacity: 1; transform: translateY(0); }
-  .no-js .reveal, .no-js .hero-role, .no-js .hero-meta, .no-js .scroll-hint{ opacity: 1 !important; transform: none !important; }
+  .no-js .reveal, .no-js .hero-role, .no-js .hero-meta, .no-js .stats, .no-js .scroll-hint{ opacity: 1 !important; transform: none !important; }
 
   /* ---------- Skip link ---------- */
   .skip-link{
@@ -448,6 +448,20 @@
     background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: var(--cyan);
   }
   .cs-links{ display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+
+  /* ---------- Stats strip ---------- */
+  .stats{
+    display: flex; flex-wrap: wrap; gap: 12px 30px;
+    margin-top: 24px;
+    opacity: 0;
+    animation: riseIn 0.8s ease forwards 1.5s;
+  }
+  .stat{ display: flex; align-items: baseline; gap: 8px; }
+  .stat-num{
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+    font-size: 1.5rem; color: var(--cyan); min-width: 2ch;
+  }
+  .stat-label{ font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--slate); }
 
   /* ---------- Resume button ---------- */
   .resume-btn{ margin-top: 16px; display: inline-flex; align-self: flex-start; }
