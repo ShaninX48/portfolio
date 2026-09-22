@@ -180,7 +180,6 @@
   .hero-name .scramble-char{ display: inline-block; }
   .hero-name .scramble-word{ display: inline-block; white-space: nowrap; }
   .hero-name .grad{ color: var(--ice); }
-  .hero-name .scramble-word:last-of-type .grad{ color: var(--cyan); }
 
   .hero-role{
     font-family: 'Space Grotesk', sans-serif;

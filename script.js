@@ -56,7 +56,7 @@
     const heroEl = document.getElementById('heroName');
     if (!heroEl) return;
     if (reduceMotionEarly) return; // keep static H1 for SEO + reduced motion
-    scrambleInto(heroEl, 'MD Tanveer Mahmood Shanin', { startDelay: 200, charDelay: 22 });
+    scrambleInto(heroEl, 'MD Tanveer Mahmood', { startDelay: 200, charDelay: 22 });
   });
 
   // ---------- Sidebar active link (position-based scroll spy) ----------
