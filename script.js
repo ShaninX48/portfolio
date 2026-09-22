@@ -291,6 +291,18 @@
     }
   });
 
+  // ---------- Back to top ----------
+  const toTop = document.getElementById('toTop');
+  if (toTop) {
+    const toggleTop = () => toTop.classList.toggle('show', window.scrollY > 600);
+    window.addEventListener('scroll', () => requestAnimationFrame(toggleTop), { passive: true });
+    toggleTop();
+    toTop.addEventListener('click', () => {
+      const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
+    });
+  }
+
   // ---------- Reduced motion check ----------
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
