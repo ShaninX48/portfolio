@@ -339,8 +339,8 @@
   .project-tags{ display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
   .project-tag{
     font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
-    padding: 4px 10px; border-radius: 999px;
-    background: rgba(0,232,255,0.08); border: 1px solid var(--border); color: var(--slate);
+    padding: 4px 10px; border-radius: 6px;
+    background: rgba(255,255,255,0.05); color: var(--slate);
   }
   .project-links{ display: flex; gap: 10px; flex-wrap: wrap; }
   .project-link{
@@ -357,6 +357,7 @@
     transform: translateY(-1px);
     box-shadow: 0 4px 14px rgba(0,232,255,0.15);
   }
+  .project-link::after{ content: '↗'; font-size: 10px; opacity: 0.8; }
 
   /* ---------- Career spotlight ---------- */
   .spotlight{
