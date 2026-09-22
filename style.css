@@ -342,14 +342,21 @@
     padding: 4px 10px; border-radius: 999px;
     background: rgba(0,232,255,0.08); border: 1px solid var(--border); color: var(--slate);
   }
-  .project-links{ display: flex; gap: 14px; }
+  .project-links{ display: flex; gap: 10px; flex-wrap: wrap; }
   .project-link{
     font-family: 'JetBrains Mono', monospace; font-size: 12px;
     text-decoration: none; color: var(--cyan);
     display: inline-flex; align-items: center; gap: 6px;
-    transition: opacity 0.2s ease;
+    padding: 8px 16px; border-radius: 8px;
+    border: 1px solid var(--border);
+    background: rgba(0,232,255,0.06);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .project-link:hover, .project-link:focus-visible{ opacity: 0.7; }
+  .project-link:hover, .project-link:focus-visible{
+    background: rgba(0,232,255,0.14);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0,232,255,0.15);
+  }
 
   /* ---------- Career spotlight ---------- */
   .spotlight{
