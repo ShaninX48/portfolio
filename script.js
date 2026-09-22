@@ -244,15 +244,31 @@
     csOverlay.classList.remove('open');
     document.body.style.overflow = '';
     document.querySelector('main').removeAttribute('inert');
-    document.querySelectorAll('.details-btn').forEach(b => b.setAttribute('aria-expanded', 'false'));
     if (lastFocused) lastFocused.focus();
   }
+  // Whole project card opens its case study; inner GitHub/Live
+  // links keep working normally. Buttons are upgraded to card-click
+  // so there is no separate Details button in the UI.
   document.querySelectorAll('.details-btn').forEach(btn => {
-    if (btn.textContent.trim() !== 'Details') btn.textContent = 'Details';
-    btn.setAttribute('aria-expanded', 'false');
-    btn.addEventListener('click', () => {
-      openCaseStudy(btn.dataset.caseStudy);
-      btn.setAttribute('aria-expanded', 'true');
+    const card = btn.closest('.project-card');
+    if (!card || !btn.dataset.caseStudy) return;
+    card.dataset.caseStudy = btn.dataset.caseStudy;
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    const name = card.querySelector('.project-name');
+    card.setAttribute('aria-label', 'View details: ' + (name ? name.textContent.trim() : 'project'));
+    btn.remove();
+  });
+  document.querySelectorAll('.project-card[data-case-study]').forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return; // let GitHub / Live links work
+      openCaseStudy(card.dataset.caseStudy);
+    });
+    card.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('a')) {
+        e.preventDefault();
+        openCaseStudy(card.dataset.caseStudy);
+      }
     });
   });
   if (csClose) csClose.addEventListener('click', closeCaseStudy);

@@ -318,6 +318,7 @@
     backdrop-filter: blur(14px);
     display: flex; flex-direction: column;
     transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
+    cursor: pointer;
   }
   .project-card:hover, .project-card:focus-visible{ transform: translateY(-6px); }
   .project-status{
