@@ -329,16 +329,12 @@
     document.querySelector('main').removeAttribute('inert');
     if (lastFocused) lastFocused.focus();
   }
-  // Whole project card opens its case study; inner GitHub/Live
-  // links keep working normally. Buttons are upgraded to card-click
-  // so there is no separate Details button in the UI.
-  document.querySelectorAll('.details-btn').forEach(btn => {
-    const card = btn.closest('.project-card');
-    if (!card || !btn.dataset.caseStudy) return;
-    card.dataset.caseStudy = btn.dataset.caseStudy;
+  // Whole project card opens its case study (key comes from the
+  // card's own data-case-study); inner GitHub/Live links work normally.
+  document.querySelectorAll('.project-card[data-case-study]').forEach(card => {
+    const name = card.querySelector('.project-name');
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
-    const name = card.querySelector('.project-name');
     card.setAttribute('aria-label', 'View details: ' + (name ? name.textContent.trim() : 'project'));
   });
   document.querySelectorAll('.project-card[data-case-study]').forEach(card => {
