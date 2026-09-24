@@ -357,25 +357,31 @@
   .project-tags{ display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
   .project-tag{
     font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
-    padding: 4px 10px; border-radius: 6px;
-    background: rgba(255,255,255,0.05); color: var(--slate);
+    padding: 5px 12px; border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.22);
+    background: transparent; color: var(--ice);
   }
-  .project-links{ display: flex; gap: 10px; flex-wrap: wrap; }
+  .project-links{ display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .project-link{
-    font-family: 'JetBrains Mono', monospace; font-size: 12px;
-    text-decoration: none; color: var(--cyan);
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 8px 16px; border-radius: 8px;
-    border: 1px solid var(--border);
-    background: rgba(0,232,255,0.06);
-    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;
+    text-decoration: none; color: var(--ice);
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 10px 14px; border-radius: 10px; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.04);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
   .project-link:hover, .project-link:focus-visible{
-    background: rgba(0,232,255,0.14);
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(255,255,255,0.4);
     transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(0,232,255,0.15);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
   }
-  .project-link::after{ content: '↗'; font-size: 10px; opacity: 0.8; }
+  .project-links a[href*="github"]::before{ content: '</>'; color: var(--cyan); }
+  .project-links a:not([href*="github"])::before{ content: '↗'; color: var(--cyan); }
+  .cs-links a[href*="github"]::before{ content: '</> '; color: var(--cyan); }
+  .cs-links a:not([href*="github"])::before{ content: '↗ '; color: var(--cyan); }
+  .details-btn::before{ content: 'ⓘ '; color: var(--cyan); }
 
   /* ---------- Career spotlight ---------- */
   .spotlight{
@@ -445,10 +451,6 @@
     transition: background 0.2s ease;
   }
   .modal-close:hover{ background: rgba(255,255,255,0.14); }
-  .details-btn{
-    background: none; cursor: pointer; font: inherit;
-    border: none; padding: 0; margin: 0; outline-offset: 3px;
-  }
   @media (max-width: 600px){ .modal-overlay{ padding: 24px 12px; } }
 
   /* ---------- Case study ---------- */

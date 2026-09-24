@@ -340,7 +340,6 @@
     card.setAttribute('tabindex', '0');
     const name = card.querySelector('.project-name');
     card.setAttribute('aria-label', 'View details: ' + (name ? name.textContent.trim() : 'project'));
-    btn.remove();
   });
   document.querySelectorAll('.project-card[data-case-study]').forEach(card => {
     card.addEventListener('click', (e) => {
