@@ -335,38 +335,39 @@
   window.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();
 
-  // ---------- Cursor glow dot (fine-pointer devices only) ----------
+  // ---------- Cursor ring + dot (fine-pointer devices only) ----------
   if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
     const dot = document.createElement('div');
     dot.className = 'cursor-dot';
+    const ring = document.createElement('div');
+    ring.className = 'cursor-ring';
+    document.body.appendChild(ring);
     document.body.appendChild(dot);
-    let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-    let tx = cx, ty = cy;
+    let dx = window.innerWidth / 2, dy = window.innerHeight / 2;
+    let rx = dx, ry = dy, tx = dx, ty = dy;
     window.addEventListener('mousemove', (e) => {
       tx = e.clientX; ty = e.clientY;
       dot.classList.add('visible');
+      ring.classList.add('visible');
     });
-    document.querySelectorAll('a, button, .project-card, .hobby-card, .skill-icon-card, .contact-card').forEach(el => {
-      el.addEventListener('mouseenter', () => dot.classList.add('hover'));
-      el.addEventListener('mouseleave', () => dot.classList.remove('hover'));
+    window.addEventListener('mousedown', () => ring.classList.add('press'));
+    window.addEventListener('mouseup', () => ring.classList.remove('press'));
+    document.querySelectorAll('a, button, .project-card, .hobby-card, .skill-icon-card, .contact-card, .cert-card').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
     });
     function cursorLoop() {
-      cx += (tx - cx) * 0.2;
-      cy += (ty - cy) * 0.2;
-      dot.style.left = cx + 'px';
-      dot.style.top = cy + 'px';
+      dx += (tx - dx) * 0.4;
+      dy += (ty - dy) * 0.4;
+      rx += (tx - rx) * 0.16;
+      ry += (ty - ry) * 0.16;
+      dot.style.left = dx + 'px';
+      dot.style.top = dy + 'px';
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
       requestAnimationFrame(cursorLoop);
     }
     cursorLoop();
-    // Premium click ripple
-    window.addEventListener('click', (e) => {
-      const r = document.createElement('div');
-      r.className = 'click-ripple';
-      r.style.left = e.clientX + 'px';
-      r.style.top = e.clientY + 'px';
-      document.body.appendChild(r);
-      r.addEventListener('animationend', () => r.remove());
-    });
   }
 
   // ---------- 3D tilt on project & hobby cards ----------
