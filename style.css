@@ -327,10 +327,16 @@
     padding: 26px 24px;
     backdrop-filter: blur(14px);
     display: flex; flex-direction: column;
-    transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease, border-color 0.35s ease;
     cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
   }
-  .project-card:hover, .project-card:focus-visible{ transform: translateY(-6px); }
+  .project-card:hover, .project-card:focus-visible{
+    transform: translateY(-8px);
+    border-color: var(--border-strong);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.5), 0 0 28px rgba(0,232,255,0.12);
+  }
   .project-status{
     font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase;
     color: var(--green); margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
@@ -340,11 +346,13 @@
   .project-status.planned .status-dot{ background: var(--slate-dim); box-shadow: none; animation: none; }
   .project-name{ font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: var(--ice); margin-bottom: 8px; }
   .shot{
-    display: block; width: calc(100% + 48px); margin: 14px -24px 18px;
+    display: block; width: calc(100% + 48px); margin: -26px -24px 18px;
     height: auto;
-    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
     background: #0a0e18;
+    transition: transform 0.5s cubic-bezier(.2,.8,.2,1), filter 0.5s ease;
   }
+  .project-card:hover .shot{ transform: scale(1.03); filter: brightness(1.06); }
   .project-desc{ font-size: 13.5px; color: var(--slate); line-height: 1.7; margin-bottom: 16px; flex-grow: 1; }
   .project-tags{ display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
   .project-tag{
