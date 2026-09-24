@@ -335,41 +335,6 @@
   window.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();
 
-  // ---------- Cursor ring + dot (fine-pointer devices only) ----------
-  if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
-    const dot = document.createElement('div');
-    dot.className = 'cursor-dot';
-    const ring = document.createElement('div');
-    ring.className = 'cursor-ring';
-    document.body.appendChild(ring);
-    document.body.appendChild(dot);
-    let dx = window.innerWidth / 2, dy = window.innerHeight / 2;
-    let rx = dx, ry = dy, tx = dx, ty = dy;
-    window.addEventListener('mousemove', (e) => {
-      tx = e.clientX; ty = e.clientY;
-      dot.classList.add('visible');
-      ring.classList.add('visible');
-    });
-    window.addEventListener('mousedown', () => ring.classList.add('press'));
-    window.addEventListener('mouseup', () => ring.classList.remove('press'));
-    document.querySelectorAll('a, button, .project-card, .hobby-card, .skill-icon-card, .contact-card, .cert-card').forEach(el => {
-      el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-      el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
-    });
-    function cursorLoop() {
-      dx += (tx - dx) * 0.4;
-      dy += (ty - dy) * 0.4;
-      rx += (tx - rx) * 0.16;
-      ry += (ty - ry) * 0.16;
-      dot.style.left = dx + 'px';
-      dot.style.top = dy + 'px';
-      ring.style.left = rx + 'px';
-      ring.style.top = ry + 'px';
-      requestAnimationFrame(cursorLoop);
-    }
-    cursorLoop();
-  }
-
   // ---------- 3D tilt on project & hobby cards ----------
   if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
     document.querySelectorAll('.project-card, .hobby-card, .skill-icon-card').forEach(card => {

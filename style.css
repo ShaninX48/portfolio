@@ -521,32 +521,22 @@
     z-index: 200; transition: width 0.08s linear;
   }
 
-  /* ---------- Cursor glow dot ---------- */
-  .cursor-dot{
-    position: fixed; top: 0; left: 0; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 8px rgba(0,232,255,0.8);
-    pointer-events: none; z-index: 151; transform: translate(-50%, -50%);
-    opacity: 0; transition: opacity 0.3s ease;
-    mix-blend-mode: screen;
+  /* ---------- Custom pointer (fine-pointer devices only) ---------- */
+  @media (pointer: fine){
+    body{
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28'%3E%3Ccircle cx='14' cy='14' r='9' fill='none' stroke='%2300e8ff' stroke-width='1.5'/%3E%3Ccircle cx='14' cy='14' r='2' fill='%2300e8ff'/%3E%3C/svg%3E") 14 14, auto;
+    }
+    a, button, .project-card, .skill-icon-card, .hobby-card, .contact-card, .cert-card{
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='16' cy='16' r='11' fill='rgba(0,232,255,0.12)' stroke='%2300e8ff' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%2300e8ff'/%3E%3C/svg%3E") 16 16, pointer;
+    }
   }
-  .cursor-ring{
-    position: fixed; top: 0; left: 0; width: 34px; height: 34px; border-radius: 50%;
-    border: 1px solid rgba(0,232,255,0.55);
-    box-shadow: 0 0 14px rgba(0,232,255,0.12);
-    pointer-events: none; z-index: 150; transform: translate(-50%, -50%);
-    opacity: 0; transition: opacity 0.3s ease, width 0.28s ease, height 0.28s ease, border-color 0.28s ease, background 0.28s ease;
-  }
-  .cursor-dot.visible, .cursor-ring.visible{ opacity: 1; }
-  .cursor-ring.hover{ width: 56px; height: 56px; border-color: rgba(0,232,255,0.85); background: rgba(0,232,255,0.06); }
-  .cursor-ring.press{ width: 24px; height: 24px; border-color: rgba(0,232,255,1); }
   @media (max-width: 880px), (pointer: coarse){ .cursor-dot{ display: none; } }
 
   /* ---------- 3D tilt perspective ---------- */
   .project-grid, .hobby-grid, .skills-rows{ perspective: 1200px; }
   .project-card, .hobby-card, .skill-icon-card{ will-change: transform; }
   @media (prefers-reduced-motion: reduce){
-    .cursor-dot, .cursor-ring, .scroll-progress{ display: none; }
+    .scroll-progress{ display: none; }
   }
 
   /* ---------- Back to top ---------- */
