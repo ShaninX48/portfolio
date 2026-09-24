@@ -218,6 +218,89 @@
   }
   draw();
 
+  // ---------- Neon flow trail (canvas ribbon, fine-pointer only) ----------
+  // Thin luminous trail: soft blue base + cyan glow + ice core, drawn as
+  // short tapered segments from a bounded, time-expiring point history.
+  // Disabled on touch / small screens / reduced motion. Overlay is
+  // pointer-events:none so clicks, scroll, selection and keyboard are untouched.
+  (function initFlowTrail() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!window.matchMedia('(pointer: fine) and (min-width: 881px)').matches) return;
+    const cv = document.getElementById('flow');
+    if (!cv) return;
+    const fx = cv.getContext('2d');
+    let FW = 0, FH = 0;
+    function sizeFlow() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      FW = window.innerWidth; FH = window.innerHeight;
+      cv.width = Math.floor(FW * dpr); cv.height = Math.floor(FH * dpr);
+      cv.style.width = FW + 'px'; cv.style.height = FH + 'px';
+      fx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      fx.lineCap = 'round'; fx.lineJoin = 'round';
+    }
+    sizeFlow();
+    const MAX_PTS = 30, FADE_MS = 550;
+    const pts = [];
+    function onMouseMove(e) {
+      const now = performance.now();
+      const x = e.clientX, y = e.clientY;
+      const last = pts[pts.length - 1];
+      if (last) {
+        const dx = x - last.x, dy = y - last.y;
+        if (dx * dx + dy * dy < 4 && now - last.t < 16) return;
+      }
+      pts.push({ x, y, t: now });
+      if (pts.length > MAX_PTS) pts.splice(0, pts.length - MAX_PTS);
+    }
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('resize', sizeFlow);
+    const PASSES = [
+      { w: 11, c: '96,165,250', a: 0.10 },  // soft electric-blue base
+      { w: 5, c: '34,211,238', a: 0.20 },   // cyan glow
+      { w: 2, c: '224,242,254', a: 0.85 }   // ice-white core
+    ];
+    let raf = 0, running = true;
+    function frame(now) {
+      raf = 0;
+      if (!running) return;
+      if (document.hidden) { raf = requestAnimationFrame(frame); return; }
+      while (pts.length && now - pts[0].t > FADE_MS) pts.shift();
+      fx.clearRect(0, 0, FW, FH);
+      const n = pts.length;
+      if (n > 1) {
+        for (const p of PASSES) {
+          for (let i = 1; i < n; i++) {
+            const age = (now - pts[i].t) / FADE_MS;
+            fx.globalAlpha = Math.max(0, p.a * (1 - age * 0.7));
+            fx.strokeStyle = 'rgb(' + p.c + ')';
+            fx.lineWidth = Math.max(0.6, p.w * (1 - age * 0.75));
+            fx.beginPath();
+            fx.moveTo(pts[i - 1].x, pts[i - 1].y);
+            fx.lineTo(pts[i].x, pts[i].y);
+            fx.stroke();
+          }
+        }
+        fx.globalAlpha = 1;
+      }
+      raf = requestAnimationFrame(frame);
+    }
+    function onVis() {
+      if (!document.hidden && !raf) raf = requestAnimationFrame(frame);
+    }
+    document.addEventListener('visibilitychange', onVis);
+    raf = requestAnimationFrame(frame);
+    function destroy() {
+      running = false;
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('resize', sizeFlow);
+      document.removeEventListener('visibilitychange', onVis);
+    }
+    window.addEventListener('pagehide', destroy, { once: true });
+    window.__flowTrail = { count: () => pts.length, destroy };
+  })();
+
   // ---------- Case study modal (overlay is the single scroller) ----------
   const csOverlay = document.getElementById('csModalOverlay');
   const csContent = document.getElementById('csModalContent');
