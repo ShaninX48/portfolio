@@ -178,7 +178,7 @@
   }
   .hero-name .scramble-char{ display: inline-block; }
   .hero-name .scramble-word{ display: inline-block; white-space: nowrap; }
-  .hero-name .grad{ color: #7fb2ff; }
+  .hero-name .grad{ color: #d9e5f7; }
 
   .hero-role{
     font-family: 'Space Grotesk', sans-serif;
