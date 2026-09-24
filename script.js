@@ -358,6 +358,15 @@
       requestAnimationFrame(cursorLoop);
     }
     cursorLoop();
+    // Premium click ripple
+    window.addEventListener('click', (e) => {
+      const r = document.createElement('div');
+      r.className = 'click-ripple';
+      r.style.left = e.clientX + 'px';
+      r.style.top = e.clientY + 'px';
+      document.body.appendChild(r);
+      r.addEventListener('animationend', () => r.remove());
+    });
   }
 
   // ---------- 3D tilt on project & hobby cards ----------
