@@ -358,6 +358,35 @@
     document.querySelector('main').removeAttribute('inert');
     if (lastFocused) lastFocused.focus();
   }
+  // Certificates open in the same modal instead of a new tab
+  document.querySelectorAll('.cert-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      const img = card.querySelector('img');
+      const title = card.querySelector('.cert-title');
+      if (!img) return;
+      csContent.innerHTML = '';
+      const wrap = document.createElement('div');
+      wrap.className = 'lightbox';
+      const full = document.createElement('img');
+      full.src = card.href;
+      full.alt = img.alt;
+      wrap.appendChild(full);
+      if (title) {
+        const cap = document.createElement('div');
+        cap.className = 'lightbox-cap';
+        cap.textContent = title.textContent.trim();
+        wrap.appendChild(cap);
+      }
+      csContent.appendChild(wrap);
+      lastFocused = document.activeElement;
+      csOverlay.classList.add('open');
+      csOverlay.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+      document.querySelector('main').setAttribute('inert', '');
+      csClose.focus();
+    });
+  });
   // Whole project card opens its case study (key comes from the
   // card's own data-case-study); inner GitHub/Live links work normally.
   document.querySelectorAll('.project-card[data-case-study]').forEach(card => {

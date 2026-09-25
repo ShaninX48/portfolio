@@ -255,6 +255,10 @@
 
   .reveal{ opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.in-view{ opacity: 1; transform: translateY(0); }
+  .project-grid > .reveal:nth-child(2), .hobby-grid > .reveal:nth-child(2), .cert-grid > .reveal:nth-child(2){ transition-delay: 0.07s; }
+  .project-grid > .reveal:nth-child(3), .hobby-grid > .reveal:nth-child(3), .cert-grid > .reveal:nth-child(3){ transition-delay: 0.14s; }
+  .project-grid > .reveal:nth-child(4), .hobby-grid > .reveal:nth-child(4), .cert-grid > .reveal:nth-child(4){ transition-delay: 0.21s; }
+  .project-grid > .reveal:nth-child(n+5), .hobby-grid > .reveal:nth-child(n+5), .cert-grid > .reveal:nth-child(n+5){ transition-delay: 0.28s; }
   .no-js .reveal, .no-js .hero-role, .no-js .hero-meta, .no-js .stats, .no-js .scroll-hint{ opacity: 1 !important; transform: none !important; }
 
   /* ---------- Skip link ---------- */
@@ -484,6 +488,13 @@
     background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: var(--cyan);
   }
   .cs-links{ display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+
+  /* ---------- Certificate lightbox ---------- */
+  .lightbox img{ width: 100%; height: auto; display: block; border-radius: 10px; background: #fff; }
+  .lightbox-cap{
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--slate);
+    padding: 14px 18px 18px; text-align: center;
+  }
 
   /* ---------- Stats strip ---------- */
   .stats{
