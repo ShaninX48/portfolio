@@ -56,23 +56,31 @@
     const heroEl = document.getElementById('heroName');
     if (!heroEl) return;
     if (reduceMotionEarly) return; // keep static H1 for SEO + reduced motion
-    scrambleInto(heroEl, 'MD Tanveer Mahmood', { startDelay: 200, charDelay: 22 });
+    scrambleInto(heroEl, 'MD Tanveer Mahmood', { startDelay: 400, charDelay: 26, revealSpan: 18 });
   });
 
   // ---------- Stats count-up (static numbers stay if JS/reduced-motion off) ----------
-  window.addEventListener('DOMContentLoaded', () => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // Restarts unfinished counters when the tab becomes visible again.
+  function startCount() {
     document.querySelectorAll('.stat-num[data-count]').forEach(el => {
       const target = parseInt(el.dataset.count, 10);
-      if (!target || target <= 0) return;
+      if (!target || target <= 0 || parseInt(el.textContent, 10) === target) return;
       const dur = 1200;
-      const t0 = performance.now() + 1400; // wait until strip fades in
+      const t0 = performance.now();
       function tick(now) {
+        if (document.hidden) { requestAnimationFrame(tick); return; }
         const p = Math.min(Math.max((now - t0) / dur, 0), 1);
         el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
         if (p < 1) requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
+    });
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    setTimeout(startCount, 1400); // wait until strip fades in
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) startCount();
     });
   });
 
