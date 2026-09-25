@@ -17,6 +17,12 @@
 
   *{ box-sizing: border-box; }
   html{ scroll-behavior: smooth; }
+  ::selection{ background: rgba(0,232,255,0.28); color: #fff; }
+  ::-webkit-scrollbar{ width: 10px; }
+  ::-webkit-scrollbar-track{ background: #060811; }
+  ::-webkit-scrollbar-thumb{ background: rgba(0,232,255,0.25); border-radius: 8px; border: 2px solid #060811; }
+  ::-webkit-scrollbar-thumb:hover{ background: rgba(0,232,255,0.45); }
+  html{ scrollbar-width: thin; scrollbar-color: rgba(0,232,255,0.35) #060811; }
 
   body{
     margin:0;
