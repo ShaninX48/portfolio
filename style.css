@@ -336,8 +336,16 @@
     transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease, border-color 0.35s ease;
     cursor: pointer;
     overflow: hidden;
+    position: relative;
     box-shadow: 0 10px 30px rgba(0,0,0,0.35);
   }
+  .project-card::after{
+    content: ''; position: absolute; inset: 0; border-radius: inherit;
+    pointer-events: none;
+    background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(0,232,255,0.10), transparent 60%);
+    opacity: 0; transition: opacity 0.3s ease;
+  }
+  .project-card:hover::after, .project-card:focus-visible::after{ opacity: 1; }
   .project-card:hover, .project-card:focus-visible{
     transform: translateY(-8px);
     border-color: var(--border-strong);
@@ -554,6 +562,7 @@
   .project-card:hover, .hobby-card:hover, .skill-icon-card:hover{ will-change: transform; }
   @media (prefers-reduced-motion: reduce){
     .scroll-progress{ display: none; }
+    .project-card::after{ display: none; }
   }
 
   /* ---------- Back to top ---------- */
