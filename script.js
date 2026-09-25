@@ -1,4 +1,4 @@
-// ---------- Terminal boot sequence ----------
+// ---------- Terminal boot sequence (typed, falls back to instant) ----------
   document.documentElement.classList.remove('no-js');
   const lines = [
     { prompt: '$', text: 'whoami' },
@@ -7,15 +7,36 @@
     { prompt: '>', text: 'profile compiled successfully ✓' }
   ];
   const terminal = document.getElementById('terminal');
-  let tDelay = 0.1;
-  lines.forEach((l, i) => {
+  function renderLine(l, withCursor) {
     const el = document.createElement('span');
     el.className = 'line';
-    el.style.animationDelay = tDelay + 's';
-    el.innerHTML = `<span class="prompt">${l.prompt}</span> ${l.text}` + (i === lines.length - 1 ? '<span class="cursor"></span>' : '');
+    el.style.opacity = '1';
+    el.style.animation = 'none';
+    el.innerHTML = `<span class="prompt">${l.prompt}</span> <span class="typed"></span>` + (withCursor ? '<span class="cursor"></span>' : '');
     terminal.appendChild(el);
-    tDelay += 0.32;
-  });
+    return el.querySelector('.typed');
+  }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    lines.forEach((l, i) => {
+      renderLine(l, i === lines.length - 1).textContent = l.text;
+    });
+  } else {
+    let li = 0;
+    (function typeLine() {
+      if (li >= lines.length) return;
+      const l = lines[li];
+      const t = renderLine(l, li === lines.length - 1);
+      let ci = 0;
+      const timer = setInterval(() => {
+        t.textContent = l.text.slice(0, ++ci);
+        if (ci >= l.text.length) {
+          clearInterval(timer);
+          li++;
+          setTimeout(typeLine, 160);
+        }
+      }, 14);
+    })();
+  }
 
   // ---------- Scramble text hero title ----------
   const reduceMotionEarly = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
