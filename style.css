@@ -9,7 +9,7 @@
     --violet: #7c5cff;
     --ice: #f3f6ff;
     --slate: #9aa3c0;
-    --slate-dim: #5a6280;
+    --slate-dim: #868fb0;
     --green: #3dffa8;
     --radius: 14px;
     --sidebar-w: 240px;
@@ -337,13 +337,6 @@
     border-color: var(--border-strong);
     box-shadow: 0 20px 48px rgba(0,0,0,0.5), 0 0 28px rgba(0,232,255,0.12);
   }
-  .project-status{
-    font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 1px; text-transform: uppercase;
-    color: var(--green); margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
-  }
-  .project-status .status-dot{ width: 6px; height: 6px; }
-  .project-status.planned{ color: var(--slate-dim); }
-  .project-status.planned .status-dot{ background: var(--slate-dim); box-shadow: none; animation: none; }
   .project-name{ font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; color: var(--ice); margin-bottom: 8px; }
   .shot{
     display: block; width: calc(100% + 48px); margin: -26px -24px 18px;
