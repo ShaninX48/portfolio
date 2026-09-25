@@ -511,6 +511,11 @@
     margin-bottom: 36px;
   }
   .cta-text{ font-size: 1.05rem; font-weight: 500; color: #fff; }
+  .avail{
+    font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--slate);
+    margin: 0 0 28px; display: flex; align-items: center; gap: 8px;
+  }
+  .avail::before{ content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
   .cta-btn{
     display: inline-flex; align-items: center; gap: 6px;
     padding: 10px 20px; border-radius: 8px;
