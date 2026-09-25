@@ -545,7 +545,7 @@
 
   /* ---------- 3D tilt perspective ---------- */
   .project-grid, .hobby-grid, .skills-rows{ perspective: 1200px; }
-  .project-card, .hobby-card, .skill-icon-card{ will-change: transform; }
+  .project-card:hover, .hobby-card:hover, .skill-icon-card:hover{ will-change: transform; }
   @media (prefers-reduced-motion: reduce){
     .scroll-progress{ display: none; }
   }
