@@ -56,7 +56,7 @@
     const heroEl = document.getElementById('heroName');
     if (!heroEl) return;
     if (reduceMotionEarly) return; // keep static H1 for SEO + reduced motion
-    scrambleInto(heroEl, 'MD Tanveer Mahmood', { startDelay: 400, charDelay: 26, revealSpan: 18 });
+    scrambleInto(heroEl, 'MD Tanveer Mahmood Shanin', { startDelay: 400, charDelay: 26, revealSpan: 18 });
   });
 
   // ---------- Stats count-up (static numbers stay if JS/reduced-motion off) ----------
