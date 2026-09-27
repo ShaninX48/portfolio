@@ -172,6 +172,20 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && sidebar.classList.contains('open')) setSidebar(false);
   });
+  // Swipe left to close sidebar (touch devices)
+  let swipeX = null, swipeY = null;
+  document.addEventListener('touchstart', (e) => {
+    if (!sidebar.classList.contains('open')) return;
+    swipeX = e.touches[0].clientX;
+    swipeY = e.touches[0].clientY;
+  }, { passive: true });
+  document.addEventListener('touchend', (e) => {
+    if (swipeX === null || !sidebar.classList.contains('open')) { swipeX = null; return; }
+    const dx = e.changedTouches[0].clientX - swipeX;
+    const dy = e.changedTouches[0].clientY - swipeY;
+    if (dx < -60 && Math.abs(dx) > Math.abs(dy) * 1.5) setSidebar(false);
+    swipeX = null;
+  }, { passive: true });
 
   // ---------- Floating code symbols (replaces dust particles) ----------
   const field = document.getElementById('particles');
