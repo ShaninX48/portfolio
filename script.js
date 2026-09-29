@@ -468,6 +468,15 @@
       });
     })
     .catch(() => {});
+  // ---------- Live contribution total via same-origin proxy ----------
+  fetch('/api/contributions')
+    .then(res => res.ok ? res.json() : null)
+    .then(data => {
+      if (!data || typeof data.total !== 'number') return;
+      const el = document.getElementById('ghCount');
+      if (el) el.textContent = data.total;
+    })
+    .catch(() => {});
 
   // ---------- Back to top ----------
   const toTop = document.getElementById('toTop');
