@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 <script defer src="https://cloud.umami.is/script.js" data-website-id="3b0bc71d-48dc-4a97-a58a-40b26cc3f0e1"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"MD Tanveer Mahmood Shanin","jobTitle":"Full-Stack Developer","address":{"@type":"PostalAddress","addressLocality":"Dhaka","addressCountry":"BD"},"url":"https://tanveer-shanin.vercel.app/","sameAs":["https://github.com/ShaninX48","https://www.linkedin.com/in/md-tanveer-mahmood-shanin-67a96629b"],"knowsAbout":["React","Node.js","TypeScript","Solidity","Python","PostgreSQL","Supabase"]}
@@ -848,6 +848,18 @@ More</span>
 </div>
 </a>
 </div>
+<form class="msg-form reveal glow-border" id="msgForm" novalidate>
+<div class="msg-head"><span class="msg-icon">➤</span><h3>Send a message</h3></div>
+<label for="msgName">Name</label>
+<input id="msgName" name="name" type="text" placeholder="Your name" required maxlength="80" autocomplete="name">
+<label for="msgEmail">Email</label>
+<input id="msgEmail" name="email" type="email" placeholder="your.email@example.com" required maxlength="120" autocomplete="email">
+<label for="msgText">Message</label>
+<textarea id="msgText" name="message" rows="5" placeholder="Tell me about your project or inquiry..." required maxlength="2000"></textarea>
+<input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+<button class="cta-btn msg-send" type="submit" id="msgSend">Send →</button>
+<p class="msg-status" id="msgStatus" role="status" aria-live="polite"></p>
+</form>
 </section>
 <footer>
 <div>designed &amp; built by Shanin</div>
@@ -862,6 +874,6 @@ More</span>
 <div id="csModalContent"></div>
 </div>
 </div>
-<script src="script.js?v=3"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>

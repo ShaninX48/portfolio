@@ -509,6 +509,44 @@
       .catch(() => {});
   })();
 
+  // ---------- Contact form (FormSubmit AJAX, honeypot spam guard) ----------
+  const msgForm = document.getElementById('msgForm');
+  if (msgForm) {
+    const msgSend = document.getElementById('msgSend');
+    const msgStatus = document.getElementById('msgStatus');
+    msgForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!msgForm.checkValidity()) { msgForm.reportValidity(); return; }
+      msgSend.disabled = true;
+      msgStatus.textContent = 'Sending...';
+      msgStatus.className = 'msg-status';
+      try {
+        const data = {
+          name: document.getElementById('msgName').value.trim(),
+          email: document.getElementById('msgEmail').value.trim(),
+          message: document.getElementById('msgText').value.trim(),
+          _honey: msgForm.querySelector('.hp').value,
+          _subject: 'Portfolio contact: ' + document.getElementById('msgName').value.trim(),
+          _template: 'table'
+        };
+        const res = await fetch('https://formsubmit.co/ajax/shaninmahmood@gmail.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error('send failed');
+        msgStatus.textContent = 'Message sent — I usually reply within a day (Sat–Thu).';
+        msgStatus.className = 'msg-status ok';
+        msgForm.reset();
+      } catch {
+        msgStatus.textContent = 'Could not send — please email me directly at shaninmahmood@gmail.com.';
+        msgStatus.className = 'msg-status err';
+      } finally {
+        msgSend.disabled = false;
+      }
+    });
+  }
+
   // ---------- Back to top ----------
   const toTop = document.getElementById('toTop');
   if (toTop) {
