@@ -739,3 +739,39 @@
   .cert-card img{ width: 100%; height: 210px; object-fit: cover; display: block; background: #fff; }
   .cert-title{ font-family: 'Space Grotesk', sans-serif; font-size: 14.5px; font-weight: 600; color: var(--ice); padding: 16px 18px 4px; }
   .cert-sub{ font-size: 12.5px; color: var(--slate); padding: 0 18px 18px; }
+
+  /* ---------- Print (recruiter one-pager) ---------- */
+  @media print{
+    #mesh, .grid-overlay, #particles, #flow, .sidebar, .sidebar-toggle,
+    .scroll-hint, .to-top, .scroll-progress, .skip-link, .modal-overlay{ display: none !important; }
+    main{ margin-left: 0; }
+    body{ background: #fff; color: #111; }
+    section{ padding: 28px 0; max-width: 100%; }
+    .reveal{ opacity: 1 !important; transform: none !important; }
+    .hero{ min-height: auto; padding: 12px 0 24px; }
+    .hero-name, .hero-name .grad{ color: #111 !important; }
+    h2, .project-name, .skill-row-label, .spotlight h3, .timeline-role,
+    .cert-title, .contact-value, .gh-chart-title{ color: #111 !important; }
+    .hero-role, .about-prose, .spotlight p, .timeline-sub, .cert-sub,
+    .project-desc, .gh-note, .contact-label{ color: #333 !important; }
+    .eyebrow, .timeline-date, .stat-num{ color: #0a6e8a !important; }
+    .eyebrow::before{ background: #0a6e8a; }
+    .project-card, .skill-icon-card, .hobby-card, .cert-card, .timeline-item,
+    .gh-card, .contact-card, .spotlight, .cta-banner, .highlight-item, .gh-chart{
+      background: #fff !important; border: 1px solid #bbb !important;
+      box-shadow: none !important; backdrop-filter: none; break-inside: avoid;
+    }
+    .project-tag, .cs-tag{ border-color: #bbb !important; color: #333 !important; background: #f2f2f2 !important; }
+    .chip{ border-color: #bbb !important; background: #f2f2f2 !important; color: #111 !important; }
+    .chip .dot, .status-dot, .avail::before{ background: #0a6e0a !important; box-shadow: none !important; }
+    .project-links a::after{ content: " (" attr(href) ")" !important; font-size: 9px; }
+    .terminal, .terminal .prompt{ color: #111 !important; }
+    .cursor{ display: none; }
+    .code-card{ background: #f5f5f5 !important; border-color: #bbb !important; }
+    .code-card *{ color: #111 !important; }
+    .contact-icon svg{ color: #111 !important; }
+    .cta-btn{ background: #111 !important; color: #fff !important; box-shadow: none !important; }
+    .gh-chart img{ filter: none !important; }
+    footer{ border-color: #bbb !important; color: #555 !important; }
+    footer .sign, footer a{ color: #111 !important; }
+  }
