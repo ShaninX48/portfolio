@@ -617,13 +617,6 @@
     font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--slate-dim);
     border-top: 1px solid var(--border);
   }
-  footer .sign{ color: var(--cyan); margin-top: 6px; }
-  footer .footer-nav{ margin-top: 16px; display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 18px; }
-  footer .footer-nav a{ color: var(--slate); text-decoration: none; transition: color 0.25s ease; }
-  footer .footer-nav a:hover, footer .footer-nav a:focus-visible{ color: var(--cyan); }
-  footer .footer-links{ margin-top: 14px; }
-  footer .footer-links a{ color: var(--slate); text-decoration: none; transition: color 0.25s ease; }
-  footer .footer-links a:hover, footer .footer-links a:focus-visible{ color: var(--cyan); }
 
   /* ---------- Skills (icon grid, grouped rows) ---------- */
   .skills-rows{ display: flex; flex-direction: column; gap: 34px; }
@@ -773,5 +766,4 @@
     .cta-btn{ background: #111 !important; color: #fff !important; box-shadow: none !important; }
     .gh-chart img{ filter: none !important; }
     footer{ border-color: #bbb !important; color: #555 !important; }
-    footer .sign, footer a{ color: #111 !important; }
   }
