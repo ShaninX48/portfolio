@@ -705,6 +705,7 @@
     font-family: 'Space Grotesk', sans-serif; font-weight: 600;
     font-size: 1.05rem; color: var(--ice);
   }
+  .gh-chart-sub{ font-weight: 400; font-size: 0.8rem; color: var(--slate); }
   .gh-legend{
     display: inline-flex; align-items: center; gap: 4px;
     font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--slate);
