@@ -621,7 +621,6 @@
   footer .footer-nav{ margin-top: 16px; display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 18px; }
   footer .footer-nav a{ color: var(--slate); text-decoration: none; transition: color 0.25s ease; }
   footer .footer-nav a:hover, footer .footer-nav a:focus-visible{ color: var(--cyan); }
-  footer .footer-built{ margin-top: 10px; color: var(--slate-dim); font-size: 11px; }
   footer .footer-links{ margin-top: 14px; }
   footer .footer-links a{ color: var(--slate); text-decoration: none; transition: color 0.25s ease; }
   footer .footer-links a:hover, footer .footer-links a:focus-visible{ color: var(--cyan); }
