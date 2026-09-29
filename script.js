@@ -110,7 +110,7 @@
   // relative to the section's own height), so the active link could stick
   // on hero.init forever. Marker-based spy works for any height.
   const navLinks = document.querySelectorAll('.nav-link');
-  const spySections = ['top', 'about', 'skills', 'projects', 'hobbies', 'career', 'certificates', 'contact']
+  const spySections = ['top', 'about', 'skills', 'projects', 'hobbies', 'career', 'certificates', 'github', 'contact']
     .map(id => document.getElementById(id))
     .filter(Boolean);
   function setActiveLink(id) {
@@ -456,6 +456,18 @@
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
+
+  // ---------- Live GitHub stats (static fallback stays on failure) ----------
+  fetch('https://api.github.com/users/ShaninX48')
+    .then(res => res.ok ? res.json() : null)
+    .then(data => {
+      if (!data) return;
+      document.querySelectorAll('[data-gh]').forEach(el => {
+        const v = data[el.dataset.gh];
+        if (typeof v === 'number') el.textContent = v;
+      });
+    })
+    .catch(() => {});
 
   // ---------- Back to top ----------
   const toTop = document.getElementById('toTop');
