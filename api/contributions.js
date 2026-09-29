@@ -58,20 +58,35 @@ function windowed(scores) {
 }
 
 function renderSvg(cells, max) {
-  const S = 11, G = 3, X0 = 8, Y0 = 8;
-  const W = X0 * 2 + 13 * (S + G) - G;
-  const H = Y0 * 2 + 7 * (S + G) - G;
-  let rects = '';
+  const S = 11, G = 3, GX = 36, GY = 20;
+  const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const W = GX + 13 * (S + G);
+  const H = GY + 7 * (S + G);
+  let out = '';
+  let prevMonth = -1;
+  for (let c = 0; c < 13; c++) {
+    const d = new Date(cells[c * 7].key + 'T00:00:00');
+    if (!isNaN(d) && d.getMonth() !== prevMonth) {
+      prevMonth = d.getMonth();
+      out += '<text x="' + (GX + c * (S + G)) + '" y="12" font-family="monospace" font-size="9" fill="#868fb0">' +
+        MON[prevMonth] + '</text>';
+    }
+  }
+  ['Mon', 'Wed', 'Fri'].forEach((day, k) => {
+    const row = k * 2 + 1;
+    out += '<text x="0" y="' + (GY + row * (S + G) + 4) + '" font-family="monospace" font-size="9" fill="#868fb0">' +
+      day + '</text>';
+  });
   cells.forEach((cell, i) => {
     if (cell.score < 0) return;
     const c = Math.floor(i / 7), row = i % 7;
-    rects += '<rect x="' + (X0 + c * (S + G)) + '" y="' + (Y0 + row * (S + G)) +
+    out += '<rect x="' + (GX + c * (S + G)) + '" y="' + (GY + row * (S + G)) +
       '" width="' + S + '" height="' + S + '" rx="2" fill="' +
       colorFor(cell.score, max) + '"><title>' + cell.score +
       ' contributions on ' + cell.key + '</title></rect>';
   });
   return '<svg xmlns="http://www.w3.org/2000/svg" width="' + W + '" height="' +
-    H + '" viewBox="0 0 ' + W + ' ' + H + '" role="img">' + rects + '</svg>';
+    H + '" viewBox="0 0 ' + W + ' ' + H + '" role="img">' + out + '</svg>';
 }
 
 export default async function handler(req, res) {
