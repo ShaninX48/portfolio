@@ -3,7 +3,7 @@
 // ?format=svg returns a theme-matched 13-week heatmap (no third party,
 // no fake data).
 const SRC = 'https://ghchart.rshah.org/00e8ff/ShaninX48';
-const DAYS = 180;
+const DAYS = 365;
 
 async function loadScores() {
   const r = await fetch(SRC);
@@ -40,11 +40,11 @@ function windowed(scores) {
       total += s.score;
     }
   }
-  // 26 columns; last column holds the current week (Sun..today)
+  // 53 columns; last column holds the current week (Sun..today)
   const endSunday = new Date(today);
-  endSunday.setDate(today.getDate() - today.getDay() - 175);
+  endSunday.setDate(today.getDate() - today.getDay() - 364);
   const cells = [];
-  for (let c = 0; c < 26; c++) {
+  for (let c = 0; c < 53; c++) {
     for (let row = 0; row < 7; row++) {
       const d = new Date(endSunday.getTime() + (c * 7 + row) * 86400000);
       const key =
@@ -64,7 +64,7 @@ function renderSvg(cells, max) {
   const H = GY + 7 * (S + G);
   let out = '';
   let prevMonth = -1;
-  for (let c = 0; c < 26; c++) {
+  for (let c = 0; c < 53; c++) {
     const d = new Date(cells[c * 7].key + 'T00:00:00');
     if (!isNaN(d) && d.getMonth() !== prevMonth) {
       prevMonth = d.getMonth();
