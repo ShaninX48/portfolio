@@ -477,6 +477,37 @@
       if (el) el.textContent = data.total;
     })
     .catch(() => {});
+  // ---------- Contribution tooltip (inline SVG, delegated) ----------
+  // fetch() is same-origin so no CORS issue; fallback <img> stays if it fails.
+  (function ghTooltip() {
+    const host = document.getElementById('ghSvg');
+    if (!host || window.matchMedia('(pointer: coarse)').matches) return;
+    fetch('/api/contributions?format=svg')
+      .then(res => res.ok ? res.text() : null)
+      .then(t => {
+        if (!t || t.indexOf('<svg') === -1) return;
+        host.innerHTML = t;
+        const svg = host.querySelector('svg');
+        if (!svg) return;
+        svg.removeAttribute('width');
+        svg.removeAttribute('height');
+        const tip = document.createElement('div');
+        tip.className = 'gh-tip';
+        host.appendChild(tip);
+        host.addEventListener('mousemove', (e) => {
+          const rc = e.target && e.target.closest ? e.target.closest('rect') : null;
+          const tt = rc && rc.querySelector('title');
+          if (!tt) { tip.style.opacity = '0'; return; }
+          tip.textContent = tt.textContent;
+          const b = host.getBoundingClientRect();
+          tip.style.left = Math.min(e.clientX - b.left + 14, b.width - 170) + 'px';
+          tip.style.top = (e.clientY - b.top - 14) + 'px';
+          tip.style.opacity = '1';
+        });
+        host.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
+      })
+      .catch(() => {});
+  })();
 
   // ---------- Back to top ----------
   const toTop = document.getElementById('toTop');

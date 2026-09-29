@@ -697,6 +697,17 @@
     overflow-x: auto;
   }
   .gh-chart img{ display: block; width: 100%; max-width: 760px; margin: 0 auto; height: auto; }
+  .gh-scroll{ overflow-x: auto; padding-bottom: 6px; }
+  .gh-svg{ position: relative; min-width: 760px; }
+  .gh-svg svg{ display: block; width: 100%; height: auto; }
+  .gh-tip{
+    position: absolute; z-index: 3; pointer-events: none;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; white-space: nowrap;
+    color: var(--ice); background: #131b31; border: 1px solid var(--border);
+    border-radius: 8px; padding: 7px 11px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.5);
+    opacity: 0; transition: opacity 0.15s ease;
+  }
   .gh-chart-head{
     display: flex; align-items: center; justify-content: space-between;
     flex-wrap: wrap; gap: 10px; margin-bottom: 14px;
