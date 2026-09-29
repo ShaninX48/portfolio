@@ -509,7 +509,7 @@
       .catch(() => {});
   })();
 
-  // ---------- Contact form (FormSubmit AJAX, honeypot spam guard) ----------
+  // ---------- Contact form (Web3Forms AJAX, honeypot spam guard) ----------
   const msgForm = document.getElementById('msgForm');
   if (msgForm) {
     const msgSend = document.getElementById('msgSend');
@@ -521,20 +521,22 @@
       msgStatus.textContent = 'Sending...';
       msgStatus.className = 'msg-status';
       try {
-        const data = {
-          name: document.getElementById('msgName').value.trim(),
-          email: document.getElementById('msgEmail').value.trim(),
-          message: document.getElementById('msgText').value.trim(),
-          _honey: msgForm.querySelector('.hp').value,
-          _subject: 'Portfolio contact: ' + document.getElementById('msgName').value.trim(),
-          _template: 'table'
-        };
-        const res = await fetch('https://formsubmit.co/ajax/shaninmahmood@gmail.com', {
+        const sender = document.getElementById('msgName').value.trim();
+        const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(data)
+          body: JSON.stringify({
+            access_key: '69afd27c-de5c-4e83-8e06-03094b138434',
+            name: sender,
+            email: document.getElementById('msgEmail').value.trim(),
+            message: document.getElementById('msgText').value.trim(),
+            subject: 'Portfolio contact: ' + sender,
+            from_name: 'Portfolio Contact Form',
+            botcheck: msgForm.querySelector('.hp').value !== '' ? true : ''
+          })
         });
-        if (!res.ok) throw new Error('send failed');
+        const out = await res.json();
+        if (!res.ok || !out.success) throw new Error('send failed');
         msgStatus.textContent = 'Message sent — I usually reply within a day (Sat–Thu).';
         msgStatus.className = 'msg-status ok';
         msgForm.reset();
