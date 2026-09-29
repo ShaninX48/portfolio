@@ -58,9 +58,9 @@ function windowed(scores) {
 }
 
 function renderSvg(cells, max) {
-  const S = 11, G = 3, GX = 36, GY = 20;
+  const S = 11, G = 3, GX = 36, GY = 20, COLS = 53;
   const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const W = GX + 13 * (S + G);
+  const W = GX + COLS * (S + G);
   const H = GY + 7 * (S + G);
   let out = '';
   let prevMonth = -1;
