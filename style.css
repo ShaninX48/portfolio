@@ -301,7 +301,7 @@
     .cta-banner{ padding: 22px 20px; }
     .contact-card{ padding: 20px 18px; }
     .project-card{ padding: 22px 20px; }
-    .shot{ width: calc(100% + 40px); margin: -22px -20px 18px; }
+    .shot{ width: calc(100% + 40px); margin: -22px -20px 18px; height: 170px; }
   }
 
   /* ---------- Code card ---------- */
@@ -368,7 +368,9 @@
   .project-name:hover, .project-name:focus-visible{ color: var(--cyan); }
   .shot{
     display: block; width: calc(100% + 48px); margin: -26px -24px 18px;
-    height: auto;
+    height: 200px;
+    object-fit: cover;
+    object-position: top center;
     border-bottom: 1px solid var(--border);
     background: #0a0e18;
     transition: transform 0.5s cubic-bezier(.2,.8,.2,1), filter 0.5s ease;
