@@ -301,6 +301,7 @@
     .cta-banner{ padding: 22px 20px; }
     .contact-card{ padding: 20px 18px; }
     .project-card{ padding: 22px 20px; }
+    .shot{ width: calc(100% + 40px); margin: -22px -20px 18px; }
   }
 
   /* ---------- Code card ---------- */
@@ -334,7 +335,6 @@
 
   /* ---------- Projects ---------- */
   .project-grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-  @media (min-width: 880px){ .project-grid{ grid-template-columns: repeat(2, 1fr); } }
   .project-card{
     background: var(--panel);
     border: 1px solid var(--border);
@@ -366,13 +366,20 @@
     background: none; border: none; text-align: left; cursor: pointer;
   }
   .project-name:hover, .project-name:focus-visible{ color: var(--cyan); }
+  .shot{
+    display: block; width: calc(100% + 48px); margin: -26px -24px 18px;
+    height: auto;
+    border-bottom: 1px solid var(--border);
+    background: #0a0e18;
+    transition: transform 0.5s cubic-bezier(.2,.8,.2,1), filter 0.5s ease;
+  }
+  .project-card:hover .shot{ transform: scale(1.03); filter: brightness(1.06); }
   .project-desc{ font-size: 13.5px; color: var(--slate); line-height: 1.7; margin-bottom: 16px; flex-grow: 1; }
   .project-tags{ display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
   .project-tag{
     font-family: 'JetBrains Mono', monospace; font-size: 12px;
-    padding: 5px 11px; border-radius: 999px;
-    border: 1px solid rgba(255,255,255,0.22);
-    background: transparent; color: var(--ice);
+    padding: 5px 11px; border-radius: 6px;
+    background: rgba(255,255,255,0.05); color: var(--slate);
   }
   .project-links{ display: flex; gap: 10px; flex-wrap: wrap; }
   .project-link{
