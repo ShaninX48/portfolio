@@ -548,7 +548,7 @@
     const grid = document.querySelector('.cert-grid');
     if (!grid) return;
     const cards = Array.from(grid.querySelectorAll('.cert-card'));
-    const extra = cards.slice(4);
+    const extra = cards.slice(3);
     if (!extra.length) return;
     const btn = document.createElement('button');
     btn.className = 'cta-btn cert-more reveal in-view';
