@@ -301,6 +301,7 @@
     .cta-banner{ padding: 22px 20px; }
     .contact-card{ padding: 20px 18px; }
     .project-card{ padding: 22px 20px; }
+    .shot{ width: calc(100% + 40px); margin: -22px -20px 18px; }
   }
 
   /* ---------- Code card ---------- */
