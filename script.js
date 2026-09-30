@@ -110,7 +110,7 @@
   // relative to the section's own height), so the active link could stick
   // on hero.init forever. Marker-based spy works for any height.
   const navLinks = document.querySelectorAll('.nav-link');
-  const spySections = ['top', 'about', 'skills', 'projects', 'hobbies', 'career', 'certificates', 'github', 'contact']
+  const spySections = ['top', 'about', 'skills', 'projects', 'career', 'certificates', 'github', 'contact']
     .map(id => document.getElementById(id))
     .filter(Boolean);
   function setActiveLink(id) {
@@ -401,14 +401,8 @@
       csClose.focus();
     });
   });
-  // Whole project card opens its case study (key comes from the
-  // card's own data-case-study); inner GitHub/Live links work normally.
-  document.querySelectorAll('.project-card[data-case-study]').forEach(card => {
-    const name = card.querySelector('.project-name');
-    card.setAttribute('role', 'button');
-    card.setAttribute('tabindex', '0');
-    card.setAttribute('aria-label', 'View details: ' + (name ? name.textContent.trim() : 'project'));
-  });
+  // Card body click opens details; the title is a real button and the
+  // GitHub/Live links are plain siblings — no nested interactives.
   document.querySelectorAll('.project-card[data-case-study]').forEach(card => {
     card.addEventListener('click', (e) => {
       if (e.target.closest('a')) return; // let GitHub / Live links work
@@ -549,6 +543,33 @@
     });
   }
 
+  // ---------- Certificates: featured 4 + expandable rest ----------
+  (function certMore() {
+    const grid = document.querySelector('.cert-grid');
+    if (!grid) return;
+    const cards = Array.from(grid.querySelectorAll('.cert-card'));
+    const extra = cards.slice(4);
+    if (!extra.length) return;
+    const btn = document.createElement('button');
+    btn.className = 'cta-btn cert-more reveal in-view';
+    btn.type = 'button';
+    btn.setAttribute('aria-expanded', 'false');
+    const total = cards.length;
+    const showLabel = 'Show all ' + total + ' certificates';
+    btn.textContent = showLabel;
+    grid.after(btn);
+    extra.forEach(c => { c.hidden = true; });
+    btn.addEventListener('click', () => {
+      const showing = btn.getAttribute('aria-expanded') === 'true';
+      extra.forEach(c => {
+        c.hidden = showing;
+        if (!showing) c.classList.add('in-view');
+      });
+      btn.textContent = showing ? showLabel : 'Show less';
+      btn.setAttribute('aria-expanded', String(!showing));
+    });
+  })();
+
   // ---------- Back to top ----------
   const toTop = document.getElementById('toTop');
   if (toTop) {
@@ -577,9 +598,9 @@
   window.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();
 
-  // ---------- 3D tilt on project & hobby cards ----------
+  // ---------- 3D tilt on project & skill cards ----------
   if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
-    document.querySelectorAll('.project-card, .hobby-card, .skill-icon-card').forEach(card => {
+    document.querySelectorAll('.project-card, .skill-icon-card').forEach(card => {
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const px = (e.clientX - rect.left) / rect.width;

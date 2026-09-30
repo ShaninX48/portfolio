@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 <script defer src="https://cloud.umami.is/script.js" data-website-id="3b0bc71d-48dc-4a97-a58a-40b26cc3f0e1"></script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"MD Tanveer Mahmood Shanin","jobTitle":"Full-Stack Developer","address":{"@type":"PostalAddress","addressLocality":"Dhaka","addressCountry":"BD"},"url":"https://tanveer-shanin.vercel.app/","sameAs":["https://github.com/ShaninX48","https://www.linkedin.com/in/md-tanveer-mahmood-shanin-67a96629b"],"knowsAbout":["React","Node.js","TypeScript","Solidity","Python","PostgreSQL","Supabase"]}
@@ -47,7 +47,6 @@
 <li><a href="#about" class="nav-link" data-target="about"><span class="branch">├─</span>about.md</a></li>
 <li><a href="#skills" class="nav-link" data-target="skills"><span class="branch">├─</span>skills.sh</a></li>
 <li><a href="#projects" class="nav-link" data-target="projects"><span class="branch">├─</span>projects/</a></li>
-<li><a href="#hobbies" class="nav-link" data-target="hobbies"><span class="branch">├─</span>hobbies.js</a></li>
 <li><a href="#career" class="nav-link" data-target="career"><span class="branch">├─</span>career.build</a></li>
 <li><a href="#certificates" class="nav-link" data-target="certificates"><span class="branch">├─</span>certs/</a></li>
 <li><a href="#github" class="nav-link" data-target="github"><span class="branch">├─</span>github.sh</a></li>
@@ -80,9 +79,12 @@
 <div class="stat"><span class="stat-num" data-count="8">8</span><span class="stat-label">Live projects</span></div>
 <div class="stat"><span class="stat-num" data-count="13">13</span><span class="stat-label">Certificates</span></div>
 <div class="stat"><span class="stat-num" data-count="2">2</span><span class="stat-label">Major awards</span></div>
-<div class="stat"><span class="stat-num" data-count="10">10</span><span class="stat-label">Uni presets shipped</span></div>
 </div>
+<div class="hero-cta">
 <a class="cta-btn resume-btn" href="resume.pdf" download>📄 Download Resume</a>
+<a class="ghost-btn" href="#projects">View projects</a>
+<a class="ghost-btn" href="#contact">Contact</a>
+</div>
 <div class="scroll-hint"><span>SCROLL</span><span class="bar"></span></div>
 </section>
 <section id="about">
@@ -92,6 +94,7 @@
 <div class="about-prose reveal">
 <p>I don't just plan software &mdash; I ship it. Live, deployed, working software, not slide decks. I'm <strong>MD Tanveer Mahmood Shanin</strong>, a full-stack developer based in Dhaka, and what I actually do is take an idea all the way to production myself: backend, frontend, database, deployment, the whole thing. I work across <strong>React, Node.js, TypeScript, and Solidity</strong>, and I'm just as comfortable wiring in AI as I am shaping a clean UI.</p>
 <p>I recently completed my BSc in Computer Science &amp; Engineering at <strong>UITS</strong>, and I'm looking for a full-stack role &mdash; on-site, hybrid, or remote &mdash; where I can bring that same "actually finish it" energy to a real team.</p>
+<p>Off the keyboard: football (playing and watching), travel, anime, and movies.</p>
 </div>
 <div class="code-card reveal glow-border">
 <div class="code-card-head">
@@ -172,7 +175,7 @@
 <div class="project-grid">
 <div class="project-card reveal glow-border" data-case-study="petition-hub">
 <img class="shot" src="shots/petition-hub.jpg" alt="Petition Hub homepage screenshot" loading="lazy" decoding="async" width="1200" height="675" onerror="this.remove()">
-<div class="project-name">Petition Hub</div>
+<button class="project-name" type="button">Petition Hub</button>
 <div class="project-desc">Civic petition platform — admin review, verified register, signatures + nearby feeds. Next.js + Supabase.</div>
 <div class="project-tags">
 <span class="project-tag">Next.js</span>
@@ -187,7 +190,7 @@
 </div>
 <div class="project-card reveal glow-border" data-case-study="kabaddi">
 <img class="shot" src="shots/kabaddi.jpg" alt="Kabaddi Raid Master game screenshot" loading="lazy" decoding="async" width="1200" height="675" onerror="this.remove()">
-<div class="project-name">Kabaddi: Raid Master</div>
+<button class="project-name" type="button">Kabaddi: Raid Master</button>
 <div class="project-desc">Browser Kabaddi with a 3D court, mic-based raid chant, and full authentic rules. 3-person team.</div>
 <div class="project-tags">
 <span class="project-tag">Three.js</span>
@@ -201,7 +204,7 @@
 </div>
 <div class="project-card reveal glow-border" data-case-study="skip-clearance">
 <img class="shot" src="shots/skip-clearance.jpg" alt="Skip Clearance portal screenshot" loading="lazy" decoding="async" width="1200" height="675" onerror="this.remove()">
-<div class="project-name">Skip Clearance</div>
+<button class="project-name" type="button">Skip Clearance</button>
 <div class="project-desc">Student portal answering "how many classes can I miss?" live — plus CGPA, fees, and goal planner. PWA, 3-person team.</div>
 <div class="project-tags">
 <span class="project-tag">JavaScript</span>
@@ -215,7 +218,7 @@
 </div>
 <div class="project-card reveal glow-border" data-case-study="provenance-tracker">
 <img class="shot" src="shots/provenance.jpg" alt="Product Provenance Tracker screenshot" loading="lazy" decoding="async" width="1200" height="675" onerror="this.remove()">
-<div class="project-name">Product Provenance &amp; Anti-Counterfeit Tracker</div>
+<button class="project-name" type="button">Product Provenance &amp; Anti-Counterfeit Tracker</button>
 <div class="project-desc">Supply-chain tracker on Polygon Amoy — on-chain registration, stage updates, ownership transfer.</div>
 <div class="project-tags">
 <span class="project-tag">Solidity</span>
@@ -230,7 +233,7 @@
 </div>
 <div class="project-card reveal glow-border" data-case-study="yutnori">
 <img class="shot" src="shots/yutnori.jpg" alt="Yutnori game screenshot" loading="lazy" decoding="async" width="1200" height="675" onerror="this.remove()">
-<div class="project-name">Yutnori</div>
+<button class="project-name" type="button">Yutnori</button>
 <div class="project-desc">Realtime multiplayer Korean board game — rooms, full rules, solo AI, 3 languages.</div>
 <div class="project-tags">
 <span class="project-tag">Node.js</span>
@@ -244,7 +247,7 @@
 </div>
 <div class="project-card reveal glow-border" data-case-study="sarangsho">
 <img class="shot" src="shots/sarangsho.jpg" alt="Sarangsho summarizer screenshot" loading="lazy" decoding="async" width="1200" height="675" onerror="this.remove()">
-<div class="project-name">সারাংশ (Sarangsho)</div>
+<button class="project-name" type="button">সারাংশ (Sarangsho)</button>
 <div class="project-desc">Zero-backend AI article summarizer — your own Gemini key, everything stays in your browser.</div>
 <div class="project-tags">
 <span class="project-tag">Gemini API</span>
@@ -258,7 +261,7 @@
 </div>
 <div class="project-card reveal glow-border" data-case-study="keyforge">
 <img class="shot" src="shots/keyforge.jpg" alt="KeyForge typing tester screenshot" loading="lazy" decoding="async" width="1200" height="675" onerror="this.remove()">
-<div class="project-name">KeyForge</div>
+<button class="project-name" type="button">KeyForge</button>
 <div class="project-desc">Typing tester for programmers — real code snippets, live stats, streaks, zero dependencies.</div>
 <div class="project-tags">
 <span class="project-tag">JavaScript</span>
@@ -272,7 +275,7 @@
 </div>
 <div class="project-card reveal glow-border" data-case-study="connectors">
 <img class="shot" src="shots/connectors.jpg" alt="Connectors chat app screenshot" loading="lazy" decoding="async" width="1200" height="675" onerror="this.remove()">
-<div class="project-name">Connectors ⚡</div>
+<button class="project-name" type="button">Connectors ⚡</button>
 <div class="project-desc">No-signup multi-room chat — emoji avatars, reactions, typing indicators, Supabase realtime.</div>
 <div class="project-tags">
 <span class="project-tag">JavaScript</span>
@@ -639,37 +642,6 @@
 </div>
 </template>
 </section>
-<section id="hobbies">
-<div class="eyebrow reveal">off-duty</div>
-<h2 class="reveal">What I'm into</h2>
-<div class="hobby-grid">
-<div class="hobby-card reveal glow-border">
-<span class="hobby-icon" aria-hidden="true">⚽</span>
-<div class="hobby-name">Playing Football</div>
-<div class="hobby-comment">// weekend build</div>
-</div>
-<div class="hobby-card reveal glow-border">
-<span class="hobby-icon" aria-hidden="true">✈️</span>
-<div class="hobby-name">Traveling</div>
-<div class="hobby-comment">// exploring prod</div>
-</div>
-<div class="hobby-card reveal glow-border">
-<span class="hobby-icon" aria-hidden="true">🎌</span>
-<div class="hobby-name">Watching Anime</div>
-<div class="hobby-comment">// async binge</div>
-</div>
-<div class="hobby-card reveal glow-border">
-<span class="hobby-icon" aria-hidden="true">🎬</span>
-<div class="hobby-name">Watching Movies</div>
-<div class="hobby-comment">// render queue</div>
-</div>
-<div class="hobby-card reveal glow-border">
-<span class="hobby-icon" aria-hidden="true">📺</span>
-<div class="hobby-name">Football Games</div>
-<div class="hobby-comment">// live stream</div>
-</div>
-</div>
-</section>
 <section id="career">
 <div class="eyebrow reveal">what i do</div>
 <h2 class="reveal">How I build</h2>
@@ -681,8 +653,9 @@
 </div>
 </div>
 <div class="timeline reveal">
+<h3 class="tl-group">Experience</h3>
 <div class="timeline-item glow-border">
-<div class="timeline-date">Jul 2026</div>
+<div class="timeline-date">Jul – Aug 2026</div>
 <div class="timeline-role">Team Lead — KAIST WFK IT Training (Team-5)</div>
 <div class="timeline-sub">Led 3-person team · shipped Student Success Portal live before 9 PM deadline · 2nd place + Excellence Award · live demo presented solo</div>
 </div>
@@ -691,15 +664,11 @@
 <div class="timeline-role">Academic Project Lead — Decentralized Voting System</div>
 <div class="timeline-sub">Final-year capstone · Solidity smart contracts · owned architecture, implementation &amp; presentation · 8 live projects shipped overall</div>
 </div>
+<h3 class="tl-group">Education</h3>
 <div class="timeline-item glow-border">
 <div class="timeline-date">2022 – 2026</div>
 <div class="timeline-role">B.Sc. CSE (Hons), UITS</div>
 <div class="timeline-sub">Final-year capstone: decentralized voting system</div>
-</div>
-<div class="timeline-item glow-border">
-<div class="timeline-date">2025</div>
-<div class="timeline-role">Bronze Award — WICE, Find Blood project</div>
-<div class="timeline-sub">Extracurricular activity · team project</div>
 </div>
 <div class="timeline-item glow-border">
 <div class="timeline-date">2021</div>
@@ -708,6 +677,12 @@
 <div class="timeline-item glow-border">
 <div class="timeline-date">2019</div>
 <div class="timeline-role">SSC (Science), Motijheel Ideal School &amp; College</div>
+</div>
+<h3 class="tl-group">Awards</h3>
+<div class="timeline-item glow-border">
+<div class="timeline-date">2025</div>
+<div class="timeline-role">Bronze Award — WICE, Find Blood project</div>
+<div class="timeline-sub">Extracurricular activity · team project</div>
 </div>
 </div>
 </section>
@@ -719,11 +694,6 @@
 <img src="certs/excellence-2026.jpg" alt="Excellence Award 2026 Project Competition Batch 1 Team 5" loading="lazy" decoding="async" width="800" height="600">
 <div class="cert-title">Excellence Award — 2026 Project Competition</div>
 <div class="cert-sub">Batch 1 Team 5 · KAIST × UITS · Aug 2026</div>
-</a>
-<a class="cert-card reveal glow-border" href="certs/completion-2026.jpg" target="_blank" rel="noopener">
-<img src="certs/completion-2026.jpg" alt="Certificate of Completion Vibe Coding KAIST UITS 2026" loading="lazy" decoding="async" width="800" height="600">
-<div class="cert-title">Certificate of Completion — Vibe Coding</div>
-<div class="cert-sub">KAIST × UITS WFK IT Training · Jul–Aug 2026</div>
 </a>
 <a class="cert-card reveal glow-border" href="certs/wice-bronze-2025.jpg" target="_blank" rel="noopener">
 <img src="certs/wice-bronze-2025.jpg" alt="WICE 2025 Bronze Medal certificate" loading="lazy" decoding="async" width="800" height="600">
@@ -739,6 +709,11 @@
 <img src="certs/sise-poster-2026.jpg" alt="SISE Spring 2026 poster presentation certificate" loading="lazy" decoding="async" width="800" height="600">
 <div class="cert-title">SISE Spring 2026 — Poster</div>
 <div class="cert-sub">Decentralized Voting System · Feb 2026</div>
+</a>
+<a class="cert-card reveal glow-border" href="certs/completion-2026.jpg" target="_blank" rel="noopener">
+<img src="certs/completion-2026.jpg" alt="Certificate of Completion Vibe Coding KAIST UITS 2026" loading="lazy" decoding="async" width="800" height="600">
+<div class="cert-title">Certificate of Completion — Vibe Coding</div>
+<div class="cert-sub">KAIST × UITS WFK IT Training · Jul–Aug 2026</div>
 </a>
 <a class="cert-card reveal glow-border" href="certs/programming-2025.jpg" target="_blank" rel="noopener">
 <img src="certs/programming-2025.jpg" alt="UITS Programming Contest 2025 Team Byte me certificate" loading="lazy" decoding="async" width="800" height="600">
@@ -786,24 +761,6 @@
 <div class="eyebrow reveal">proof</div>
 <h2 class="reveal">GitHub activity</h2>
 <p class="gh-note reveal">Live from my public profile — updates itself.</p>
-<div class="gh-grid">
-<div class="gh-card reveal glow-border">
-<div class="gh-num" data-gh="followers">6</div>
-<div class="gh-label">Followers</div>
-</div>
-<div class="gh-card reveal glow-border">
-<div class="gh-num" data-gh="following">15</div>
-<div class="gh-label">Following</div>
-</div>
-<div class="gh-card reveal glow-border">
-<div class="gh-num" data-gh="public_repos">15</div>
-<div class="gh-label">Public repos</div>
-</div>
-<div class="gh-card reveal glow-border">
-<div class="gh-num">8</div>
-<div class="gh-label">Live projects</div>
-</div>
-</div>
 <a class="gh-chart reveal glow-border" href="https://github.com/ShaninX48" target="_blank" rel="noopener noreferrer" aria-label="View my full contribution graph on GitHub">
 <div class="gh-chart-head">
 <span class="gh-chart-title">Recent activity — last 12 months <span class="gh-chart-sub">(full stats on GitHub →)</span></span>
@@ -815,6 +772,24 @@ More</span>
 <img src="/api/contributions?format=svg" alt="GitHub contribution graph for ShaninX48, last 12 months" loading="lazy" decoding="async" onerror="this.closest('.gh-chart').remove()">
 </div></div>
 </a>
+<div class="gh-grid">
+<div class="gh-card reveal glow-border">
+<div class="gh-num" data-gh="public_repos">15</div>
+<div class="gh-label">Public repos</div>
+</div>
+<div class="gh-card reveal glow-border">
+<div class="gh-num">8</div>
+<div class="gh-label">Live projects</div>
+</div>
+<div class="gh-card reveal glow-border">
+<div class="gh-num" data-gh="followers">6</div>
+<div class="gh-label">Followers</div>
+</div>
+<div class="gh-card reveal glow-border">
+<div class="gh-num" data-gh="following">15</div>
+<div class="gh-label">Following</div>
+</div>
+</div>
 <a class="cta-btn reveal" href="https://github.com/ShaninX48" target="_blank" rel="noopener noreferrer">View GitHub →</a>
 </section>
 <section id="contact">
@@ -875,6 +850,6 @@ More</span>
 <div id="csModalContent"></div>
 </div>
 </div>
-<script src="script.js?v=4"></script>
+<script src="script.js?v=5"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 // Same-origin contribution data + chart, built from the public ghchart
-// SVG (no token needed). Default returns the last-90-day total as JSON;
-// ?format=svg returns a theme-matched 13-week heatmap (no third party,
-// no fake data).
+// SVG (no token needed; the upstream third-party fetch happens server-side,
+// never in the visitor's browser). Default returns the 365-day total as
+// JSON; ?format=svg returns a theme-matched 53-week heatmap.
 const SRC = 'https://ghchart.rshah.org/00e8ff/ShaninX48';
 const DAYS = 365;
 
@@ -90,10 +90,11 @@ function renderSvg(cells, max) {
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
   try {
     const scores = await loadScores();
     const { cells, total } = windowed(scores);
+    // Cache successful responses at the edge; never cache failures.
+    res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
     const format = req.query && req.query.format;
     if (format === 'svg') {
       const max = cells.reduce((m, c) => Math.max(m, c.score), 0);
@@ -103,6 +104,7 @@ export default async function handler(req, res) {
     }
     res.status(200).json({ total, days: DAYS });
   } catch {
+    res.setHeader('Cache-Control', 'no-store');
     if (req.query && req.query.format === 'svg') {
       res.status(200).send(
         '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"></svg>');
