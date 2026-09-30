@@ -369,7 +369,7 @@
   .project-name:hover, .project-name:focus-visible{ color: var(--cyan); }
   .shot{
     display: block; width: calc(100% + 48px); margin: -26px -24px 18px;
-    aspect-ratio: 16 / 10; object-fit: cover;
+    aspect-ratio: 21 / 9; object-fit: cover; object-position: top center;
     border-bottom: 1px solid var(--border);
     background: #0a0e18;
     transition: transform 0.5s cubic-bezier(.2,.8,.2,1), filter 0.5s ease;
