@@ -368,9 +368,9 @@
   .project-name:hover, .project-name:focus-visible{ color: var(--cyan); }
   .shot{
     display: block; width: 100%; margin: 0 0 18px;
-    aspect-ratio: 16 / 10; object-fit: cover;
+    aspect-ratio: 16 / 10; object-fit: contain;
     border-radius: 12px; border: 1px solid var(--border);
-    background: #0a0e18;
+    background: #060811;
     transition: transform 0.5s cubic-bezier(.2,.8,.2,1), filter 0.5s ease, box-shadow 0.5s ease;
   }
   .project-card:hover .shot{ transform: scale(1.02); filter: brightness(1.06); box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
